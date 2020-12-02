@@ -114,41 +114,42 @@
 				<div class="span4">
 					<div class="well">
 						<h5>Đăng ký tài khoản</h5>
-						<form>
+						
+						<form:form action="dang-ky" method="POST" modelAttribute="user">  
 							<div class="control-group">
 								<label class="control-label" for="inputEmail">E-mail</label>
 								<div class="controls">
-									<input class="span3" type="text" placeholder="E-mail">
+									<form:input type="email" class="span3" placeholder="E-mail" path="user" />  
 								</div>
 							</div>
 							<div class="control-group">
 								<label class="control-label" for="inputEmail">Mật khẩu</label>
 								<div class="controls">
-									<input class="span3" type="text" placeholder="Password">
+									<form:input type="password" class="span3" placeholder="Password" path="password" />
 								</div>
 							</div>
 							<div class="control-group">
-								<label class="control-label" for="inputEmail">Họ và tên</label>
+								<label class="control-label" for="inputEmail">Tên hiển thị</label>
 								<div class="controls">
-									<input class="span3" type="text" placeholder="Name">
+									<form:input type="text" class="span3" placeholder="Name" path="display_name" />
 								</div>
 							</div>
 							<div class="control-group">
 								<label class="control-label" for="inputEmail">Địa chỉ</label>
 								<div class="controls">
-									<input class="span3" type="text" placeholder="Address">
+									<form:input type="text" class="span3" placeholder="Address" path="address" />
 								</div>
 							</div>
 							<div class="control-group">
 								<label class="control-label" for="inputEmail">Số điện thoại</label>
 								<div class="controls">
-									<input class="span3" type="text" placeholder="Phone">
+									<form:input type="text" class="span3" placeholder="Phone" path="phone" />
 								</div>
 							</div>
 							<div class="controls">
 								<button type="submit" class="btn block">Đăng ký tài khoản</button>
 							</div>
-						</form>
+						</form:form>
 					</div>
 				</div>
 				<div class="span1">&nbsp;</div>
