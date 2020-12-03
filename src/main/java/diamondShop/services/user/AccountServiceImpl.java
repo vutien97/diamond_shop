@@ -19,4 +19,19 @@ public class AccountServiceImpl implements IAccountService {
 		return userDao.addUser(user);
 	}
 
+	@Override
+	public boolean findUserByLogin(User user) {
+		String pass = user.getPassword();
+		user = userDao.getUserByLogin(user);
+		if (user != null) {
+			// Check password
+			if (BCrypt.checkpw(pass, user.getPassword())) {
+				return true;
+			} else {
+				return false;
+			}
+		}
+		return false;
+	}
+
 }

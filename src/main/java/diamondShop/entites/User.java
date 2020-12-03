@@ -3,7 +3,7 @@ package diamondShop.entites;
 public class User {
 	private long id;
 	private boolean role;
-	private String user;
+	private String email;
 	private String password;
 	private String display_name;
 	private String address;
@@ -13,22 +13,22 @@ public class User {
 
 	}
 
-	public User(long id, boolean role, String user, String password, String display_name, String address, String phone) {
+	public User(long id, boolean role, String email, String password, String display_name, String address, String phone) {
 		super();
 		this.id = id;
 		this.role = role;
-		this.user = user;
+		this.email = email;
 		this.password = password;
 		this.display_name = display_name;
 		this.address = address;
 		this.phone = phone;
 	}
 
-	public User(long id, boolean role, String user, String password, String display_name) {
+	public User(long id, boolean role, String email, String password, String display_name) {
 		super();
 		this.id = id;
 		this.role = role;
-		this.user = user;
+		this.email = email;
 		this.password = password;
 		this.display_name = display_name;
 	}
@@ -49,12 +49,12 @@ public class User {
 		this.role = role;
 	}
 
-	public String getUser() {
-		return user;
+	public String getEmail() {
+		return email;
 	}
 
-	public void setUser(String user) {
-		this.user = user;
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	public String getPassword() {

@@ -3,6 +3,7 @@ package diamondShop.dao;
 import org.springframework.stereotype.Repository;
 
 import diamondShop.entites.User;
+import diamondShop.entites.entityMapper.UserMapper;
 
 @Repository
 public class UserDao extends BaseDao {
@@ -13,7 +14,7 @@ public class UserDao extends BaseDao {
 		sql.append("INTO user ");
 		sql.append("( ");
 		sql.append("	role, ");
-		sql.append("	user, ");
+		sql.append("	email, ");
 		sql.append("	password, ");
 		sql.append("	display_name, ");
 		sql.append("	address, ");
@@ -22,7 +23,7 @@ public class UserDao extends BaseDao {
 		sql.append("VALUES ");
 		sql.append("( ");
 		sql.append("	" + user.isRole() + ", ");
-		sql.append("	'" + user.getUser() + "', ");
+		sql.append("	'" + user.getEmail() + "', ");
 		sql.append("	'" + user.getPassword() + "', ");
 		sql.append("	N'" + user.getDisplay_name() + "', ");
 		sql.append("	N'" + user.getAddress() + "', ");
@@ -31,6 +32,13 @@ public class UserDao extends BaseDao {
 
 		int insert = _jdbcTemplate.update(sql.toString());
 		return insert;
+	}
+	
+	public User getUserByLogin(User user) {
+		String sql = "SELECT * FROM user WHERE email = '" + user.getEmail() + "'";
+		
+		User result = _jdbcTemplate.queryForObject(sql, new UserMapper());
+		return result;
 	}
 
 }
