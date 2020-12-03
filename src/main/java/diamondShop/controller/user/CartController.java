@@ -7,11 +7,14 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import diamondShop.dto.CartDto;
+import diamondShop.entites.Bill;
 import diamondShop.services.user.CartServiceImpl;
 
 @Controller
@@ -61,7 +64,7 @@ public class CartController extends BaseController {
 
 	@RequestMapping(value = "deleteCart/{id}")
 	public String deleteCart(HttpServletRequest request, HttpSession session, @PathVariable long id) {
-		@SuppressWarnings("unchecked")		
+		@SuppressWarnings("unchecked")
 		HashMap<Long, CartDto> cart = (HashMap<Long, CartDto>) session.getAttribute("Cart");
 		if (cart == null) {
 			cart = new HashMap<Long, CartDto>();
@@ -71,6 +74,20 @@ public class CartController extends BaseController {
 		session.setAttribute("TotalQuantity", cartServiceImpl.totalQuantity(cart));
 		session.setAttribute("TotalPrice", cartServiceImpl.totalPrice(cart));
 		return "redirect:" + request.getHeader("Referer");
+	}
+
+	@RequestMapping(value = "checkout", method = RequestMethod.GET)
+	public ModelAndView Checkout(HttpServletRequest request, HttpSession session) {
+		_mavShare.setViewName("user/bill/checkout");
+		_mavShare.addObject("bill", new Bill());
+		return _mavShare;
+	}
+
+	@RequestMapping(value = "checkout", method = RequestMethod.POST)
+	public ModelAndView CheckoutBill(HttpServletRequest request, HttpSession session,
+			@ModelAttribute("bill") Bill bill) {
+		_mavShare.setViewName("user/bill/checkout");
+		return _mavShare;
 	}
 
 }

@@ -7,5 +7,5 @@ import diamondShop.entites.User;
 @Service
 public interface IAccountService {
 	public int addAccount(User user);
-	public boolean findUserByLogin(User user);
+	public User findUserByLogin(User user);
 }

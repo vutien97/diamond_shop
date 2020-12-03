@@ -53,6 +53,7 @@ Navigation Bar Section
 					<input type="text" placeholder="Search" class="search-query span2">
 				</form>
 				<ul class="nav pull-right">
+				<c:if test="${empty LoginInfo}">
 					<li class="dropdown"><a data-toggle="dropdown"
 						class="dropdown-toggle" href="#"><span class="icon-lock"></span>
 							Đăng nhập <b class="caret"></b></a>
@@ -75,6 +76,11 @@ Navigation Bar Section
 								</div>
 							</form>
 						</div></li>
+						</c:if>
+							
+						<c:if test="${not empty LoginInfo}">
+							<li><a href="#">${LoginInfo.display_name}</a>
+						</c:if>
 				</ul>
 			</div>
 		</div>

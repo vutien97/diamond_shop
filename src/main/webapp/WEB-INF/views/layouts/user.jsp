@@ -49,10 +49,21 @@
 							class="icon-tumblr"></span></a>
 					</div>
 					<a class="active" href="index.html"> <span class="icon-home"></span>
-						Trang chủ
-					</a> <a href="#"><span class="icon-user"></span> Tài Khoản</a> <a
-						href="<c:url value="/dang-ky"/>"><span class="icon-edit"></span> Đăng ký </a> <a href="contact.html"><span class="icon-envelope"></span>
-						Liên hệ với chúng tôi</a> <a href="<c:url value="/gio-hang/"/>"><span
+						Trang chủ</a> 
+						
+					
+					<c:if test="${empty LoginInfo}">
+					<a href="<c:url value="/dang-ky"/>"><span class="icon-user"></span> Tài Khoản</a> 
+					<a href="<c:url value="/dang-ky"/>"><span class="icon-edit"></span> Đăng ký </a> 			
+					</c:if>
+					<c:if test="${not empty LoginInfo}">
+							<a href="#"><span class="icon-user"></span>${LoginInfo.display_name}</a>
+							<a href="<c:url value="/dang-xuat"/>"><span class="icon-edit"></span> Đăng xuất </a> 
+					</c:if>	
+						
+					<a href="contact.html"><span class="icon-envelope"></span>
+						Liên hệ với chúng tôi</a> 
+					<a href="<c:url value="/gio-hang/"/>"><span
 						class="icon-shopping-cart"></span> ${TotalQuantity} Sản phẩm - <span
 						class="badge badge-warning"><fmt:formatNumber type="number" groupingUsed="true" value="${TotalPrice}"/> ₫</span></a>
 				</div>
