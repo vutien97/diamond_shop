@@ -6,7 +6,7 @@ import java.util.List;
 import org.springframework.stereotype.Repository;
 
 import diamondShop.entites.Menu;
-import diamondShop.entites.entityMapper.MenuMapper;
+import diamondShop.entites.mapper.MenuMapper;
 @Repository
 public class MenuDao extends BaseDao{
 	public List<Menu> getDataMenu(){

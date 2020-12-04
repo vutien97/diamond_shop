@@ -15,12 +15,16 @@ import org.springframework.web.servlet.ModelAndView;
 
 import diamondShop.dto.CartDto;
 import diamondShop.entites.Bill;
+import diamondShop.entites.User;
+import diamondShop.services.user.BillServiceImpl;
 import diamondShop.services.user.CartServiceImpl;
 
 @Controller
 public class CartController extends BaseController {
 	@Autowired
 	private CartServiceImpl cartServiceImpl = new CartServiceImpl();
+	@Autowired
+	private BillServiceImpl billServiceImpl = new BillServiceImpl();
 
 	@RequestMapping(value = "gio-hang")
 	public ModelAndView index() {
@@ -76,18 +80,32 @@ public class CartController extends BaseController {
 		return "redirect:" + request.getHeader("Referer");
 	}
 
-	@RequestMapping(value = "checkout", method = RequestMethod.GET)
+	@RequestMapping(value = "/checkout", method = RequestMethod.GET)
 	public ModelAndView Checkout(HttpServletRequest request, HttpSession session) {
 		_mavShare.setViewName("user/bill/checkout");
-		_mavShare.addObject("bill", new Bill());
+		Bill bill = new Bill();
+		User loginInfo = (User) session.getAttribute("LoginInfo");
+		if (loginInfo != null) {
+			bill.setAddress(loginInfo.getAddress());
+			bill.setDisplay_name(loginInfo.getDisplay_name());
+			bill.setEmail(loginInfo.getEmail());
+		}
+		_mavShare.addObject("bill", bill);
 		return _mavShare;
 	}
 
-	@RequestMapping(value = "checkout", method = RequestMethod.POST)
-	public ModelAndView CheckoutBill(HttpServletRequest request, HttpSession session,
-			@ModelAttribute("bill") Bill bill) {
-		_mavShare.setViewName("user/bill/checkout");
-		return _mavShare;
+	@RequestMapping(value = "/checkout", method = RequestMethod.POST)
+	public String CheckoutBill(HttpServletRequest request, HttpSession session, @ModelAttribute("bill") Bill bill) {
+		bill.setQuantity((int) session.getAttribute("TotalQuantity"));
+		bill.setTotal((double) session.getAttribute("TotalPrice"));
+		
+		if (billServiceImpl.addBill(bill) > 0) {
+			@SuppressWarnings("unchecked")
+			HashMap<Long, CartDto> cart = (HashMap<Long, CartDto>) session.getAttribute("Cart");
+			billServiceImpl.addBillDetail(cart);
+		}
+		session.removeAttribute("Cart");
+		return "redirect:/trang-chu";
 	}
 
 }

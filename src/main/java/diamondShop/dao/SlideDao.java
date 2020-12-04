@@ -6,7 +6,7 @@ import java.util.List;
 import org.springframework.stereotype.Repository;
 
 import diamondShop.entites.Slide;
-import diamondShop.entites.entityMapper.SlideMapper;
+import diamondShop.entites.mapper.SlideMapper;
 
 @Repository
 public class SlideDao extends BaseDao {

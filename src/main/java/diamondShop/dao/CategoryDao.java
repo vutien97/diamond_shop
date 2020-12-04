@@ -6,7 +6,7 @@ import java.util.List;
 import org.springframework.stereotype.Repository;
 
 import diamondShop.entites.Category;
-import diamondShop.entites.entityMapper.CategoryMapper;
+import diamondShop.entites.mapper.CategoryMapper;
 @Repository
 public class CategoryDao extends BaseDao {
 	

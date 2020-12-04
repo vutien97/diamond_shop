@@ -3,7 +3,7 @@ package diamondShop.dao;
 import org.springframework.stereotype.Repository;
 
 import diamondShop.entites.User;
-import diamondShop.entites.entityMapper.UserMapper;
+import diamondShop.entites.mapper.UserMapper;
 
 @Repository
 public class UserDao extends BaseDao {

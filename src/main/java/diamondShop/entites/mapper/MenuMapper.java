@@ -1,4 +1,4 @@
-package diamondShop.entites.entityMapper;
+package diamondShop.entites.mapper;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;

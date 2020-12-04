@@ -53,6 +53,7 @@ public class UserController extends BaseController {
 	@RequestMapping(value = "/dang-xuat", method = RequestMethod.GET)
 	public String Logout(HttpSession session, HttpServletRequest request) {
 		session.removeAttribute("LoginInfo");
-		return "redirect:" + request.getHeader("Referer");
+		_mavShare.setViewName("user/index");
+		return "redirect:/trang-chu" ;
 	}
 }
