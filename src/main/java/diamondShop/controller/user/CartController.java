@@ -1,5 +1,7 @@
 package diamondShop.controller.user;
 
+import java.sql.Timestamp;
+import java.util.Date;
 import java.util.HashMap;
 
 import javax.servlet.http.HttpServletRequest;
@@ -86,9 +88,12 @@ public class CartController extends BaseController {
 		Bill bill = new Bill();
 		User loginInfo = (User) session.getAttribute("LoginInfo");
 		if (loginInfo != null) {
+			Date date = new Date();
+	
 			bill.setAddress(loginInfo.getAddress());
 			bill.setDisplay_name(loginInfo.getDisplay_name());
 			bill.setEmail(loginInfo.getEmail());
+			bill.setBillDate(new Timestamp(date.getTime()));
 		}
 		_mavShare.addObject("bill", bill);
 		return _mavShare;

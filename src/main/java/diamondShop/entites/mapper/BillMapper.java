@@ -20,6 +20,7 @@ public class BillMapper implements RowMapper<Bill> {
 		bill.setTotal(rs.getDouble("total"));
 		bill.setQuantity(rs.getInt("quantity"));
 		bill.setNote(rs.getString("note"));
+		bill.setBillDate(rs.getTimestamp("billDate"));
 		return bill;
 	}
 

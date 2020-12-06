@@ -1,5 +1,7 @@
 package diamondShop.entites;
 
+import java.sql.Timestamp;
+
 public class Bill {
 	private long id;
 	private String email;
@@ -9,6 +11,7 @@ public class Bill {
 	private double total;
 	private int quantity;
 	private String note;
+	private Timestamp billDate;
 
 	public Bill() {
 		super();
@@ -78,4 +81,12 @@ public class Bill {
 		this.note = note;
 	}
 
+	public Timestamp getBillDate() {
+		return billDate;
+	}
+
+	public void setBillDate(Timestamp billDate) {
+		this.billDate = billDate;
+	}
+	
 }

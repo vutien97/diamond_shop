@@ -20,6 +20,7 @@ public class BillDao extends BaseDao {
 		sql.append(", `total` ");
 		sql.append(", `quantity` ");
 		sql.append(", `note` ");
+		sql.append(", `billDate` ");
 		sql.append(") ");
 		sql.append("VALUES ");
 		sql.append("( ");
@@ -29,7 +30,8 @@ public class BillDao extends BaseDao {
 		sql.append(", '" + bill.getAddress() + "' ");
 		sql.append(", " + bill.getTotal() + " ");
 		sql.append(", " + bill.getQuantity() + " ");
-		sql.append(", '" + bill.getNote() + "'); ");
+		sql.append(", '" + bill.getNote() + "' ");
+		sql.append(", " + bill.getBillDate() + "); ");
 		int insert = _jdbcTemplate.update(sql.toString());
 		return insert;
 	}
