@@ -1,4 +1,5 @@
 eclipse.preferences.version=1
 encoding//src/main/java/diamondShop/controller/admin/AdminAccountController.java=UTF-8
 encoding//src/main/java/diamondShop/controller/user/UserController.java=UTF-8
+encoding//src/main/webapp/WEB-INF/views/admin/admin-index.jsp=UTF-8
 encoding//src/main/webapp/WEB-INF/views/user/product/product.jsp=UTF-8

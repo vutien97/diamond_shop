@@ -43,12 +43,12 @@
 			<div class="container">
 				<div class="alignR">
 					<div class="pull-left socialNw">
-						<a href="#"><span class="icon-twitter"></span></a> <a href="#"><span
-							class="icon-facebook"></span></a> <a href="#"><span
-							class="icon-youtube"></span></a> <a href="#"><span
+						<a href="https://twitter.com/"><span class="icon-twitter"></span></a> <a href="https://facebook.com/"><span
+							class="icon-facebook"></span></a> <a href="https://youtube.com/"><span
+							class="icon-youtube"></span></a> <a href="https://tumblr.com/"><span
 							class="icon-tumblr"></span></a>
 					</div>
-					<a class="active" href="index.html"> <span class="icon-home"></span>
+					<a class="active" href="<c:url value="/trang-chu/"/>"> <span class="icon-home"></span>
 						Trang chủ</a> 
 						
 					

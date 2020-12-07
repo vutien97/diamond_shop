@@ -17,7 +17,7 @@ Body Section
 
 
 					<li style="border: 0">&nbsp;</li>
-					<li><a class="totalInCart" href="cart.html"><strong>Đã
+					<li><a class="totalInCart" href="<c:url value="/gio-hang/"/>"><strong>Đã
 								mua <span class="badge badge-warning pull-right"
 								style="line-height: 18px;"><fmt:formatNumber type="number" groupingUsed="true" value="${TotalPrice}"/> ₫</span>
 						</strong></a></li>
@@ -39,52 +39,7 @@ Body Section
 
 			<a class="shopBtn btn-block" href="#">Upcoming products <br>
 				<small>Click to view</small></a> <br> <br>
-			<ul class="nav nav-list promowrapper">
-				<li>
-					<div class="thumbnail">
-						<a class="zoomTool" href="product_details.html"
-							title="add to cart"><span class="icon-search"></span> QUICK
-							VIEW</a> <img src="assets/img/bootstrap-ecommerce-templates.png"
-							alt="bootstrap ecommerce templates">
-						<div class="caption">
-							<h4>
-								<a class="defaultBtn" href="product_details.html">VIEW</a> <span
-									class="pull-right">$22.00</span>
-							</h4>
-						</div>
-					</div>
-				</li>
-				<li style="border: 0">&nbsp;</li>
-				<li>
-					<div class="thumbnail">
-						<a class="zoomTool" href="product_details.html"
-							title="add to cart"><span class="icon-search"></span> QUICK
-							VIEW</a> <img src="assets/img/shopping-cart-template.png"
-							alt="shopping cart template">
-						<div class="caption">
-							<h4>
-								<a class="defaultBtn" href="product_details.html">VIEW</a> <span
-									class="pull-right">$22.00</span>
-							</h4>
-						</div>
-					</div>
-				</li>
-				<li style="border: 0">&nbsp;</li>
-				<li>
-					<div class="thumbnail">
-						<a class="zoomTool" href="product_details.html"
-							title="add to cart"><span class="icon-search"></span> QUICK
-							VIEW</a> <img src="assets/img/bootstrap-template.png"
-							alt="bootstrap template">
-						<div class="caption">
-							<h4>
-								<a class="defaultBtn" href="product_details.html">VIEW</a> <span
-									class="pull-right">$22.00</span>
-							</h4>
-						</div>
-					</div>
-				</li>
-			</ul>
+			
 
 		</div>
 		<div class="span9">
@@ -205,11 +160,7 @@ New Products
 				</c:if>
 			</div>
 		</div>
-		<hr>
-		<div class="well well-small">
-			<a class="btn btn-mini pull-right" href="#">Xem thêm <span
-				class="icon-plus"></span></a> Tất cả sản phẩm
-		</div>
+		
 	</div>
 	</div>
 

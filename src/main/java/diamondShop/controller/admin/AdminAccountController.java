@@ -29,7 +29,7 @@ public class AdminAccountController extends BaseAdminController {
 	public ModelAndView adminLogin(HttpSession session, @ModelAttribute("user") User user) {
 		user = adminAccountServiceImpl.findAdminByLogin(user);
 		if (user != null) {
-			_mavShare.setViewName("redirect:trang-chu");
+			_mavShare.setViewName("redirect:/admin/admin-index");
 			session.setAttribute("AdminLoginInfo", user);
 		} else {
 			_mavShare.addObject("statusAdminLogin", "Đăng nhập thất bại!");
