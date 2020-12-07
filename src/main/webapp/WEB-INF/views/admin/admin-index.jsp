@@ -5,4 +5,6 @@
 <title>Admin Index</title>
 <body>
 	<h5>Đây là trang admin</h5>
+	<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+	<br><br><br><br><br><br><br><br><br><br><br>
 </body>

@@ -126,7 +126,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				</div>
 			<!--copy rights start here-->	
 			<div class="copyrights">
-				 <p>© 2016 Shoppy. All Rights Reserved | Design by  <a href="http://w3layouts.com/" target="_blank">W3layouts</a> </p>
+				 <p>© 2020 Shoppy. All Rights Reserved </p>
 			</div>	
 			<!--COPY rights end here-->
 			</div>
