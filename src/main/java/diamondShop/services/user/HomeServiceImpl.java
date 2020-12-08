@@ -9,9 +9,9 @@ import diamondShop.dao.CategoryDao;
 import diamondShop.dao.MenuDao;
 import diamondShop.dao.ProductDao;
 import diamondShop.dao.SlideDao;
-import diamondShop.dto.ProductDto;
 import diamondShop.entites.Category;
 import diamondShop.entites.Menu;
+import diamondShop.entites.Product;
 import diamondShop.entites.Slide;
 import diamondShop.services.user.userInterface.IHomeService;
 
@@ -38,18 +38,18 @@ public class HomeServiceImpl implements IHomeService {
 		return menuDao.getDataMenu();
 	}
 
-	public List<ProductDto> getHighlightProduct() {
-		List<ProductDto> listProduct = productDao.getHighlightProduct();
+	public List<Product> getHighlightProduct() {
+		List<Product> listProduct = productDao.getHighlightProduct();
 		return listProduct;
 	}
 
-	public List<ProductDto> getNewProduct() {
-		List<ProductDto> listProduct = productDao.getNewProduct();
+	public List<Product> getNewProduct() {
+		List<Product> listProduct = productDao.getNewProduct();
 		return listProduct;
 	}
 
-	public List<ProductDto> getListProduct() {
-		List<ProductDto> listProduct = productDao.getListProduct();
+	public List<Product> getListProduct() {
+		List<Product> listProduct = productDao.getListProduct();
 		return listProduct;
 	}
 

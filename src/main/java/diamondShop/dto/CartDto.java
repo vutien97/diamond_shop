@@ -1,15 +1,17 @@
 package diamondShop.dto;
 
+import diamondShop.entites.Product;
+
 public class CartDto {
 	private int quantity;
 	private double totalPrice;
-	private ProductDto product;
+	private Product product;
 
 	public CartDto() {
 		
 	}
 
-	public CartDto(int quantity, double totalPrice, ProductDto product) {
+	public CartDto(int quantity, double totalPrice, Product product) {
 		super();
 		this.quantity = quantity;
 		this.totalPrice = totalPrice;
@@ -32,11 +34,11 @@ public class CartDto {
 		this.totalPrice = totalPrice;
 	}
 
-	public ProductDto getProduct() {
+	public Product getProduct() {
 		return product;
 	}
 
-	public void setProduct(ProductDto product) {
+	public void setProduct(Product product) {
 		this.product = product;
 	}
 

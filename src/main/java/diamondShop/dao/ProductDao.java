@@ -5,8 +5,8 @@ import java.util.List;
 
 import org.springframework.stereotype.Repository;
 
-import diamondShop.dto.ProductDto;
-import diamondShop.dto.ProductDtoMapper;
+import diamondShop.entites.Product;
+import diamondShop.entites.mapper.ProductMapper;
 
 @Repository
 public class ProductDao extends BaseDao {
@@ -32,6 +32,7 @@ public class ProductDao extends BaseDao {
 		sql.append(", c.img ");
 		sql.append(", p.created_at ");
 		sql.append(", p.updated_at ");
+		sql.append(", p.quantity ");
 		sql.append("FROM ");
 		sql.append("products AS p ");
 		sql.append("INNER JOIN ");
@@ -75,38 +76,38 @@ public class ProductDao extends BaseDao {
 		return sql.toString();
 	}
 
-	public List<ProductDto> getHighlightProduct() {
+	public List<Product> getHighlightProduct() {
 		String sql = SqlProductQuery(NO, YES);
-		List<ProductDto> listProductDto = new ArrayList<ProductDto>();
-		listProductDto = _jdbcTemplate.query(sql, new ProductDtoMapper());
+		List<Product> listProductDto = new ArrayList<Product>();
+		listProductDto = _jdbcTemplate.query(sql, new ProductMapper());
 		return listProductDto;
 	}
 
-	public List<ProductDto> getNewProduct() {
+	public List<Product> getNewProduct() {
 		String sql = SqlProductQuery(YES, NO);
-		List<ProductDto> listProductDto = new ArrayList<ProductDto>();
-		listProductDto = _jdbcTemplate.query(sql, new ProductDtoMapper());
+		List<Product> listProductDto = new ArrayList<Product>();
+		listProductDto = _jdbcTemplate.query(sql, new ProductMapper());
 		return listProductDto;
 	}
 
-	public List<ProductDto> getListProduct() {
+	public List<Product> getListProduct() {
 		String sql = SqlListProduct();
-		List<ProductDto> listProductDto = new ArrayList<ProductDto>();
-		listProductDto = _jdbcTemplate.query(sql, new ProductDtoMapper());
+		List<Product> listProductDto = new ArrayList<Product>();
+		listProductDto = _jdbcTemplate.query(sql, new ProductMapper());
 		return listProductDto;
 	}
 
-	public List<ProductDto> getListProductByCategoryId(int id) {
+	public List<Product> getListProductByCategoryId(int id) {
 		String sql = SqlProductByCategoryIdQuery(id).toString();
-		List<ProductDto> listProductDto = new ArrayList<ProductDto>();
-		listProductDto = _jdbcTemplate.query(sql, new ProductDtoMapper());
+		List<Product> listProductDto = new ArrayList<Product>();
+		listProductDto = _jdbcTemplate.query(sql, new ProductMapper());
 		return listProductDto;
 	}
 
-	public List<ProductDto> getListProductPaginate(int id, int start, int totalProductIn1Page) {
+	public List<Product> getListProductPaginate(int id, int start, int totalProductIn1Page) {
 		String sql = SqlProductPaginate(id, start, totalProductIn1Page);
-		List<ProductDto> listProductDto = new ArrayList<ProductDto>();
-		listProductDto = _jdbcTemplate.query(sql, new ProductDtoMapper());
+		List<Product> listProductDto = new ArrayList<Product>();
+		listProductDto = _jdbcTemplate.query(sql, new ProductMapper());
 		return listProductDto;
 	}
 
@@ -118,15 +119,22 @@ public class ProductDao extends BaseDao {
 		return sql.toString();
 	}
 
-	public List<ProductDto> getProductById(long id) {
+	public List<Product> getProductById(long id) {
 		String sql = SqlProductByIdQuery(id);
-		List<ProductDto> productDto = _jdbcTemplate.query(sql, new ProductDtoMapper());
+		List<Product> productDto = _jdbcTemplate.query(sql, new ProductMapper());
 		return productDto;
 	}
 
-	public ProductDto findProductById(long id) {
+	public Product findProductById(long id) {
 		String sql = SqlProductByIdQuery(id);
-		ProductDto productDto = _jdbcTemplate.queryForObject(sql, new ProductDtoMapper());
+		Product productDto = _jdbcTemplate.queryForObject(sql, new ProductMapper());
 		return productDto;
+	}
+
+	public int updateProduct(Product product) {
+		String sql = "UPDATE `products` SET `updated_at` = '" + product.getUpdated_at() + "', `quantity` = '" + product.getQuantity() + "' WHERE `products`.`id` = " + product.getId_product();
+		
+		int update = _jdbcTemplate.update(sql);
+		return update;
 	}
 }

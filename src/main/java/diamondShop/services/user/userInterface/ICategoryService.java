@@ -4,10 +4,10 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import diamondShop.dto.ProductDto;
+import diamondShop.entites.Product;
 
 @Service
 public interface ICategoryService {
-	public List<ProductDto> getProductByCategoryId(int id_category);
-	public List<ProductDto> getDataProductPaginate(int id, int start, int totalPage);
+	public List<Product> getProductByCategoryId(int id_category);
+	public List<Product> getDataProductPaginate(int id, int start, int totalPage);
 }

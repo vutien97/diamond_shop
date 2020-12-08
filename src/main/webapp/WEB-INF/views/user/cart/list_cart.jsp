@@ -24,7 +24,7 @@
 						<tr>
 							<th>Hình ảnh</th>
 							<th>Mô tả</th>
-							<th>Màu sắc</th>
+							<th>Có sẵn</th>
 							<th>Giá bán</th>
 							<th>Số lượng</th>
 							<th>Chỉnh sửa</th>
@@ -40,13 +40,11 @@
 									src="<c:url value="/assets/user/img/${item.value.product.img}"/>"
 									alt=""></td>
 								<td>${ item.value.product.title }</td>
-								<td><span class="shopBtn"
-									style="background-color: ${item.value.product.code_color};"><span
-										class="icon-ok"></span></span></td>
+								<td>${item.value.product.quantity}</td>
 								<td><fmt:formatNumber type="number" groupingUsed="true"
 										value="${item.value.product.price}" /> ₫</td>
-								<td><input type="number" min="0" max="100" class="span1"
-									style="max-width: 34px" placeholder="1"
+								<td><input type="number" min="0" max="${item.value.product.quantity}" class="span2"
+									style="max-width: 40px" placeholder="1"
 									id="quantity-cart-${item.key}" size="16" type="text"
 									value="${item.value.quantity}"></td>
 								<td><button data-id="${item.key}"

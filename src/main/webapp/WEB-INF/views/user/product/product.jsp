@@ -11,7 +11,6 @@
 </style>
 </head>
 <body>
-<h1>${Cart.size()}</h1>
 	<div class="row product-content">
 		<div id="sidebar" class="span3">
 			<div class="well well-small">
@@ -141,14 +140,9 @@
 							</div>
 
 							<div class="control-group">
-								<label class="control-label"><span>Color</span></label>
+								<label class="control-label"><span>Có sẵn trong kho: </span></label>
 								<div class="controls">
-									<select class="span11">
-										<option>Red</option>
-										<option>Purple</option>
-										<option>Pink</option>
-										<option>Red</option>
-									</select>
+									<label class="control-label"><span>${productById.quantity}</span></label> 
 								</div>
 							</div>
 							<h4></h4>

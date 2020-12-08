@@ -1,8 +1,9 @@
-package diamondShop.dto;
+package diamondShop.entites;
 
-import java.sql.Date;
+import java.sql.Timestamp;
+import java.util.Date;
 
-public class ProductDto {
+public class Product {
 	private long id_product;
 	private int id_category;
 	private String size;
@@ -17,10 +18,11 @@ public class ProductDto {
 	private String name_color;
 	private String code_color;
 	private String img;
-	private Date created_at;
-	private Date updated_at;
+	private Timestamp created_at;
+	private Timestamp updated_at;
+	private int quantity;
 
-	public ProductDto() {
+	public Product() {
 		super();
 	}
 
@@ -140,16 +142,24 @@ public class ProductDto {
 		return created_at;
 	}
 
-	public void setCreated_at(Date created_at) {
-		this.created_at = created_at;
-	}
-
-	public Date getUpdated_at() {
+	public Timestamp getUpdated_at() {
 		return updated_at;
 	}
 
-	public void setUpdated_at(Date updated_at) {
+	public void setUpdated_at(Timestamp updated_at) {
 		this.updated_at = updated_at;
+	}
+
+	public void setCreated_at(Timestamp created_at) {
+		this.created_at = created_at;
+	}
+
+	public int getQuantity() {
+		return quantity;
+	}
+
+	public void setQuantity(int quantity) {
+		this.quantity = quantity;
 	}
 
 }

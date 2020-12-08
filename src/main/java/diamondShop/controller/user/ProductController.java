@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import diamondShop.dto.ProductDto;
+import diamondShop.entites.Product;
 import diamondShop.services.user.ProductServiceImpl;
 
 @Controller
@@ -17,7 +17,7 @@ public class ProductController extends BaseController {
 	@RequestMapping(value = {"/chi-tiet-san-pham/{id}"})
 	public ModelAndView product(@PathVariable long id) {
 		_mavShare.setViewName("user/product/product");
-		ProductDto productDto = _productServiceImpl.getProductById(id);
+		Product productDto = _productServiceImpl.getProductById(id);
 		_mavShare.addObject("productById", productDto);
 		_mavShare.addObject("productByCId", _productServiceImpl.getProductByCId(productDto.getId_category()));
 		return _mavShare;

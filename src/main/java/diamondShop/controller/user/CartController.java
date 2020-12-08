@@ -20,6 +20,7 @@ import diamondShop.entites.Bill;
 import diamondShop.entites.User;
 import diamondShop.services.user.BillServiceImpl;
 import diamondShop.services.user.CartServiceImpl;
+import diamondShop.services.user.ProductServiceImpl;
 
 @Controller
 public class CartController extends BaseController {
@@ -27,6 +28,8 @@ public class CartController extends BaseController {
 	private CartServiceImpl cartServiceImpl = new CartServiceImpl();
 	@Autowired
 	private BillServiceImpl billServiceImpl = new BillServiceImpl();
+	@Autowired
+	private ProductServiceImpl productServiceImpl = new ProductServiceImpl();
 
 	@RequestMapping(value = "gio-hang")
 	public ModelAndView index() {
@@ -108,6 +111,7 @@ public class CartController extends BaseController {
 			@SuppressWarnings("unchecked")
 			HashMap<Long, CartDto> cart = (HashMap<Long, CartDto>) session.getAttribute("Cart");
 			billServiceImpl.addBillDetail(cart);
+			productServiceImpl.updateProduct(cart);
 		}
 		session.removeAttribute("Cart");
 		return "redirect:/trang-chu";

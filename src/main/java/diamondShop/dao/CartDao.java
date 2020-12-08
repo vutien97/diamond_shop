@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import diamondShop.dto.CartDto;
-import diamondShop.dto.ProductDto;
+import diamondShop.entites.Product;
 
 @Repository
 public class CartDao extends BaseDao {
@@ -16,7 +16,7 @@ public class CartDao extends BaseDao {
 
 	public HashMap<Long, CartDto> addCart(long id, HashMap<Long, CartDto> cart) {
 		CartDto itemCart = new CartDto();
-		ProductDto product = productDao.findProductById(id);
+		Product product = productDao.findProductById(id);
 		if (product != null && cart.containsKey(id)) {
 			itemCart = cart.get(id);
 			itemCart.setQuantity(itemCart.getQuantity() + 1);
