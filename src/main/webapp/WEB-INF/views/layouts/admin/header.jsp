@@ -30,7 +30,7 @@
 							<span class="prfil-img"><img src="<c:url value="/assets/admin/images/p1.png"/>" alt="">
 							</span>
 							<div class="user-name">
-								<p>Malorum</p>
+								<p>${AdminLoginInfo.display_name}</p>
 								<span>Administrator</span>
 							</div>
 							<i class="fa fa-angle-down lnr"></i> <i
@@ -39,9 +39,8 @@
 						</div>
 				</a>
 					<ul class="dropdown-menu drp-mnu">
-						<li><a href="#"><i class="fa fa-cog"></i> Settings</a></li>
-						<li><a href="#"><i class="fa fa-user"></i> Profile</a></li>
-						<li><a href="#"><i class="fa fa-sign-out"></i> Logout</a></li>
+						<li><a href="#"><i class="fa fa-user"></i> Trang cá nhân</a></li>
+						<li><a href="<c:url value="/admin-logout"/>"><i class="fa fa-sign-out"></i> Đăng xuất</a></li>
 					</ul></li>
 			</ul>
 		</div>

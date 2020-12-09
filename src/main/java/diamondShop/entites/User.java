@@ -1,5 +1,7 @@
 package diamondShop.entites;
 
+import java.sql.Timestamp;
+
 public class User {
 	private long id;
 	private boolean role;
@@ -8,12 +10,14 @@ public class User {
 	private String display_name;
 	private String address;
 	private String phone;
+	private Timestamp created_at;
 
 	public User() {
 
 	}
 
-	public User(long id, boolean role, String email, String password, String display_name, String address, String phone) {
+	public User(long id, boolean role, String email, String password, String display_name, String address, String phone,
+			Timestamp created_at) {
 		super();
 		this.id = id;
 		this.role = role;
@@ -22,15 +26,17 @@ public class User {
 		this.display_name = display_name;
 		this.address = address;
 		this.phone = phone;
+		this.created_at = created_at;
 	}
 
-	public User(long id, boolean role, String email, String password, String display_name) {
+	public User(long id, boolean role, String email, String password, String display_name, Timestamp created_at) {
 		super();
 		this.id = id;
 		this.role = role;
 		this.email = email;
 		this.password = password;
 		this.display_name = display_name;
+		this.created_at = created_at;
 	}
 
 	public long getId() {
@@ -87,6 +93,14 @@ public class User {
 
 	public void setPhone(String phone) {
 		this.phone = phone;
+	}
+
+	public Timestamp getCreated_at() {
+		return created_at;
+	}
+
+	public void setCreated_at(Timestamp created_at) {
+		this.created_at = created_at;
 	}
 
 }

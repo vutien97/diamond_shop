@@ -1,9 +1,12 @@
 package diamondShop.dao;
 
+import java.util.List;
+
 import org.springframework.stereotype.Repository;
 
 import diamondShop.entites.Bill;
 import diamondShop.entites.BillDetail;
+import diamondShop.entites.mapper.BillMapper;
 
 @Repository
 public class BillDao extends BaseDao {
@@ -63,5 +66,16 @@ public class BillDao extends BaseDao {
 		int insert = _jdbcTemplate.update(sql.toString());
 		return insert;
 	}
-
+	
+	public double totalIn1month() {
+		String sql = "SELECT SUM(total) FROM bill WHERE billDate BETWEEN DATE_SUB(CURRENT_TIMESTAMP, INTERVAL 30 DAY) AND CURRENT_TIMESTAMP";
+		double total = _jdbcTemplate.queryForObject(sql, Double.class);
+		return total;
+	}
+	
+	public List<Bill> billIn1Week(){
+		String sql = "SELECT * FROM bill WHERE billDate BETWEEN DATE_SUB(CURRENT_TIMESTAMP, INTERVAL 7 DAY) AND CURRENT_TIMESTAMP";
+		List<Bill> listBill = _jdbcTemplate.query(sql,new BillMapper());
+		return listBill;
+	}
 }

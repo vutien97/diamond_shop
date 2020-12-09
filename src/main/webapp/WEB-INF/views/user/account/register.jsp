@@ -158,6 +158,7 @@
 				<div class="span4">
 					<div class="well">
 						<h5>Đã có tài khoản ?</h5>
+						<h5>${statusLogin}</h5>
 						<form:form action="dang-nhap" method="POST" modelAttribute="user">  
 							<div class="control-group">
 								<label class="control-label" for="inputEmail">E-mail</label>

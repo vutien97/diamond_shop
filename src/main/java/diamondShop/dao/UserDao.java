@@ -1,5 +1,7 @@
 package diamondShop.dao;
 
+import java.util.List;
+
 import org.springframework.stereotype.Repository;
 
 import diamondShop.entites.User;
@@ -18,7 +20,8 @@ public class UserDao extends BaseDao {
 		sql.append("	password, ");
 		sql.append("	display_name, ");
 		sql.append("	address, ");
-		sql.append("	phone ");
+		sql.append("	phone, ");
+		sql.append("	created_at ");
 		sql.append(") ");
 		sql.append("VALUES ");
 		sql.append("( ");
@@ -27,7 +30,8 @@ public class UserDao extends BaseDao {
 		sql.append("	'" + user.getPassword() + "', ");
 		sql.append("	N'" + user.getDisplay_name() + "', ");
 		sql.append("	N'" + user.getAddress() + "', ");
-		sql.append("	'" + user.getPhone() + "' ");
+		sql.append("	'" + user.getPhone() + "', ");
+		sql.append("	'" + user.getCreated_at() + "' ");
 		sql.append(")");
 
 		int insert = _jdbcTemplate.update(sql.toString());
@@ -40,5 +44,10 @@ public class UserDao extends BaseDao {
 		User result = _jdbcTemplate.queryForObject(sql, new UserMapper());
 		return result;
 	}
-
+	
+	public List<User> getListUserIn1Month(){
+		String sql = "SELECT * FROM user WHERE created_at BETWEEN DATE_SUB(CURRENT_TIMESTAMP, INTERVAL 30 DAY) AND CURRENT_TIMESTAMP";
+		List<User> listUser = _jdbcTemplate.query(sql, new UserMapper());
+		return listUser;
+	}
 }

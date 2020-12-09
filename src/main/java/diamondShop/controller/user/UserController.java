@@ -1,5 +1,8 @@
 package diamondShop.controller.user;
 
+import java.sql.Timestamp;
+import java.util.Date;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -26,8 +29,11 @@ public class UserController extends BaseController {
 		return _mavShare;
 	}
 
-	@RequestMapping(value = "/dang-ky", method = RequestMethod.POST)
+	@RequestMapping(value = "/dang-ky", method = RequestMethod.POST, produces = "application/x-www-form-urlencoded;charset=UTF-8" + 
+			"")
 	public ModelAndView createAcc(@ModelAttribute("user") User user) {
+		Date date = new Date();
+		user.setCreated_at(new Timestamp(date.getTime()));
 		int count = accountServiceImpl.addAccount(user);
 		if (count > 0) {
 			_mavShare.addObject("status", "Đăng ký thành công!");
@@ -35,6 +41,7 @@ public class UserController extends BaseController {
 			_mavShare.addObject("status", "Đăng ký thất bại!");
 		}
 		_mavShare.setViewName("user/account/register");
+		
 		return _mavShare;
 	}
 
