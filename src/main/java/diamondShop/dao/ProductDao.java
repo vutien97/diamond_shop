@@ -70,11 +70,8 @@ public class ProductDao extends BaseDao {
 		sql.append(" LIMIT " + start + ", " + totalPage);
 		return sql.toString();
 	}
-
-	private String SqlListProduct() {
-		StringBuffer sql = SqlQuery();
-		return sql.toString();
-	}
+	
+	
 
 	public List<Product> getHighlightProduct() {
 		String sql = SqlProductQuery(NO, YES);
@@ -91,11 +88,14 @@ public class ProductDao extends BaseDao {
 	}
 
 	public List<Product> getListProduct() {
-		String sql = SqlListProduct();
+		StringBuffer sql = SqlQuery();
+		sql.append("GROUP BY p.id, c.id_product ");
 		List<Product> listProductDto = new ArrayList<Product>();
-		listProductDto = _jdbcTemplate.query(sql, new ProductMapper());
+		listProductDto = _jdbcTemplate.query(sql.toString(), new ProductMapper());
 		return listProductDto;
 	}
+	
+	
 
 	public List<Product> getListProductByCategoryId(int id) {
 		String sql = SqlProductByCategoryIdQuery(id).toString();
@@ -108,6 +108,15 @@ public class ProductDao extends BaseDao {
 		String sql = SqlProductPaginate(id, start, totalProductIn1Page);
 		List<Product> listProductDto = new ArrayList<Product>();
 		listProductDto = _jdbcTemplate.query(sql, new ProductMapper());
+		return listProductDto;
+	}
+	
+	public List<Product> getListProductPaginate(int start, int totalProductIn1Page) {
+		StringBuffer sql = SqlQuery();
+		sql.append("GROUP BY p.id, c.id_product ");
+		sql.append(" LIMIT " + start + ", " + totalProductIn1Page);
+		List<Product> listProductDto = new ArrayList<Product>();
+		listProductDto = _jdbcTemplate.query(sql.toString(), new ProductMapper());
 		return listProductDto;
 	}
 
@@ -132,9 +141,26 @@ public class ProductDao extends BaseDao {
 	}
 
 	public int updateProduct(Product product) {
-		String sql = "UPDATE `products` SET `updated_at` = '" + product.getUpdated_at() + "', `quantity` = '" + product.getQuantity() + "' WHERE `products`.`id` = " + product.getId_product();
-		
+		String sql = "UPDATE `products` SET `updated_at` = '" + product.getUpdated_at() + "', `quantity` = '"
+				+ product.getQuantity() + "' WHERE `products`.`id` = " + product.getId_product();
+
 		int update = _jdbcTemplate.update(sql);
 		return update;
+	}
+	
+	public void deleteProductById(Product product) {
+		StringBuffer  varname1 = new StringBuffer();
+		varname1.append("DELETE FROM billdetail WHERE id_product = " + product.getId_product());
+		varname1.append(";");
+		_jdbcTemplate.update(varname1.toString());
+
+		StringBuffer  varname11 = new StringBuffer();
+		varname11.append("DELETE FROM color WHERE id_product = "  + product.getId_product());
+		varname11.append(";");
+		_jdbcTemplate.update(varname11.toString());
+
+		StringBuffer  varname12 = new StringBuffer();
+		varname12.append("DELETE FROM products WHERE id = "  + product.getId_product());
+		_jdbcTemplate.update(varname12.toString());
 	}
 }

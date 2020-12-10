@@ -13,4 +13,7 @@ public interface IProductService {
 	public Product getProductById(long id);
 	public List<Product> getProductByCId(int id);
 	public void updateProduct(HashMap<Long, CartDto> cart);
+	public List<Product> getListProduct();
+	public List<Product> getListProductPaginate(int start, int totalProductIn1Page);
+	public void deleteProductById(Product product);
 }

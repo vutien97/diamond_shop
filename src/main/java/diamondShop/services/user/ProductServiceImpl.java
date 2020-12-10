@@ -34,14 +34,31 @@ public class ProductServiceImpl implements IProductService {
 	public void updateProduct(HashMap<Long, CartDto> cart) {
 		Date date = new Date();
 		for (Map.Entry<Long, CartDto> itemCart : cart.entrySet()) {
-			
+
 			Product product = getProductById(itemCart.getValue().getProduct().getId_product());
 			int quantity = product.getQuantity() - itemCart.getValue().getQuantity();
 			product.setQuantity(quantity);
 			product.setUpdated_at(new Timestamp(date.getTime()));
 			productDao.updateProduct(product);
 		}
-	
+
+	}
+
+	@Override
+	public List<Product> getListProduct() {
+		// TODO Auto-generated method stub
+		return productDao.getListProduct();
+	}
+
+	@Override
+	public List<Product> getListProductPaginate(int start, int totalProductIn1Page) {
+		
+		return productDao.getListProductPaginate(start, totalProductIn1Page);
+	}
+
+	@Override
+	public void deleteProductById(Product product) {
+		productDao.deleteProductById(product);
 	}
 
 }
