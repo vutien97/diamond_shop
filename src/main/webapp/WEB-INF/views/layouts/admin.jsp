@@ -126,7 +126,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				</div>
 			<!--copy rights start here-->	
 			<div class="copyrights">
-				 <p>© 2020 Shoppy. All Rights Reserved </p>
+				 <p>© 2020 Diamond Shop. All Rights Reserved </p>
 			</div>	
 			<!--COPY rights end here-->
 			</div>
@@ -140,7 +140,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			      <ul id="menu" >
 			       
 			       
-			        <li id="menu-comunicacao" ><a href="#"><i class="fa fa-book nav_icon"></i><span>Danh sách người dùng</span><span  style="float: right"></span></a>
+			        <li id="menu-comunicacao" ><a href="${pageContext.request.contextPath}/admin/user"><i class="fa fa-book nav_icon"></i><span>Danh sách người dùng</span><span  style="float: right"></span></a>
 			          
 			        </li>
 			        

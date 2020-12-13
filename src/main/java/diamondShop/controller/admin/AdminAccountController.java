@@ -26,11 +26,12 @@ public class AdminAccountController extends BaseAdminController {
 	}
 
 	@RequestMapping(value = "/admin-login", method = RequestMethod.POST)
-	public ModelAndView adminLogin(HttpSession session, @ModelAttribute("user") User user) {
+	public ModelAndView adminLogin(HttpSession session, HttpServletRequest request, @ModelAttribute("user") User user) {
 		user = adminAccountServiceImpl.findAdminByLogin(user);
 		if (user != null) {
 			_mavShare.setViewName("redirect:/admin/admin-index");
 			session.setAttribute("AdminLoginInfo", user);
+			request.getSession().setMaxInactiveInterval(60*60);
 		} else {
 			_mavShare.addObject("statusAdminLogin", "Đăng nhập thất bại!");
 		}

@@ -50,11 +50,12 @@ public class UserController extends BaseController {
 	}
 
 	@RequestMapping(value = "/dang-nhap", method = RequestMethod.POST)
-	public ModelAndView login(HttpSession session, @ModelAttribute("user") User user) {
+	public ModelAndView login(HttpSession session, HttpServletRequest request, @ModelAttribute("user") User user) {
 		user = accountServiceImpl.findUserByLogin(user);
 		if (user != null) {
 			_mavShare.setViewName("redirect:trang-chu");
 			session.setAttribute("LoginInfo", user);
+			request.getSession().setMaxInactiveInterval(60*60);
 		} else {
 			_mavShare.addObject("statusLogin", "Đăng nhập thất bại!");
 		}

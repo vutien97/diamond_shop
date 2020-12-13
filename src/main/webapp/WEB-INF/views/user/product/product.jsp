@@ -74,9 +74,11 @@
 
 						<form class="form-horizontal qtyFrm" method="get" action="<c:url value="/addCart/${productById.id_product}"/>">
 							<div class="control-group">
-								<label class="control-label"><span><fmt:formatNumber type="number" groupingUsed="true" value="${productById.price}" />₫</span></label>
+								<label class="control-label"><span>Giá: </span></label>
+								<%-- <label class="control-label"><span><fmt:formatNumber type="number" groupingUsed="true" value="${productById.price}" />₫</span></label> --%>
 								<div class="controls">
-									<input type="number" min="0" value="0" class="span6">
+								<label class="control-label"><span><fmt:formatNumber type="number" groupingUsed="true" value="${productById.price}" />₫</span></label>
+									<!-- <input type="number" min="0" value="0" class="span6"> -->
 								</div>
 							</div>
 

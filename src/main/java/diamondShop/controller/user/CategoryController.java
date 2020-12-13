@@ -36,7 +36,7 @@ public class CategoryController extends BaseController {
 	}
 	
 	@RequestMapping(value = "/san-pham/{id}/{currentPage}")
-	public ModelAndView Product(@PathVariable String id, @PathVariable String currentPage) {
+	public ModelAndView Product(@PathVariable String id, @PathVariable String currentPage) throws NumberFormatException{
 
 		_mavShare.setViewName("user/product/category");
 		_mavShare.addObject("listProductByC_Id", _categoryServiceImpl.getProductByCategoryId(Integer.parseInt(id)));

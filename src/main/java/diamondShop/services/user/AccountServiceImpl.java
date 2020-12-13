@@ -1,5 +1,7 @@
 package diamondShop.services.user;
 
+import java.util.List;
+
 import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -32,6 +34,30 @@ public class AccountServiceImpl implements IAccountService {
 			}
 		}
 		return null;
+	}
+
+	@Override
+	public List<User> getAllUser() {
+		// TODO Auto-generated method stub
+		return userDao.getAllUser();
+	}
+
+	@Override
+	public List<User> getListUserPaginate(int start, int totalProductIn1Page) {
+		// TODO Auto-generated method stub
+		return userDao.getListUserPaginate(start, totalProductIn1Page);
+	}
+
+	@Override
+	public void deleteUser(User user) {
+		// TODO Auto-generated method stub
+		userDao.deleteUser(user);
+	}
+
+	@Override
+	public User getUserById(long id) {
+		// TODO Auto-generated method stub
+		return userDao.getUserById(id);
 	}
 
 }

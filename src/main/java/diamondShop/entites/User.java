@@ -11,13 +11,14 @@ public class User {
 	private String address;
 	private String phone;
 	private Timestamp created_at;
+	private int status;
 
 	public User() {
 
 	}
 
 	public User(long id, boolean role, String email, String password, String display_name, String address, String phone,
-			Timestamp created_at) {
+			Timestamp created_at, int status) {
 		super();
 		this.id = id;
 		this.role = role;
@@ -27,6 +28,7 @@ public class User {
 		this.address = address;
 		this.phone = phone;
 		this.created_at = created_at;
+		this.status = status;
 	}
 
 	public User(long id, boolean role, String email, String password, String display_name, Timestamp created_at) {
@@ -101,6 +103,14 @@ public class User {
 
 	public void setCreated_at(Timestamp created_at) {
 		this.created_at = created_at;
+	}
+
+	public int getStatus() {
+		return status;
+	}
+
+	public void setStatus(int status) {
+		this.status = status;
 	}
 
 }

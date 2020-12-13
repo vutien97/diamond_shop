@@ -19,15 +19,15 @@
 						<form:select path="id_category">
 
 							<form:option value="1" label="Nhẫn" />
-							<form:option value="2" label="Vòng tay" />
+							<form:option value="2" label="Lắc tay" />
 							<form:option value="3" label="Khuyên tai" />
-							<form:option value="4" label="Khuyên tai" />
-
+							<form:option value="4" label="Dây chuyền" />
+							<form:option value="5" label="Lắc chân" />
 						</form:select>
 						<br />
 						<label>Tên sản phẩm</label>
 						<form:input path="name" />
-						<label>Price</label>
+						<label>Price ₫</label>
 						<form:input path="price" />
 						<label>Title</label>
 						<form:input path="title" />
