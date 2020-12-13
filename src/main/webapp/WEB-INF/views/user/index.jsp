@@ -19,7 +19,8 @@ Body Section
 					<li style="border: 0">&nbsp;</li>
 					<li><a class="totalInCart" href="<c:url value="/gio-hang/"/>"><strong>Đã
 								mua <span class="badge badge-warning pull-right"
-								style="line-height: 18px;"><fmt:formatNumber type="number" groupingUsed="true" value="${TotalPrice}"/> ₫</span>
+								style="line-height: 18px;"><fmt:formatNumber
+										type="number" groupingUsed="true" value="${TotalPrice}" /> ₫</span>
 						</strong></a></li>
 				</ul>
 			</div>
@@ -36,10 +37,9 @@ Body Section
 					src="<c:url value="/assets/user/img/paypal.jpg"/>"
 					alt="payment method paypal"></a>
 			</div>
-
 			<a class="shopBtn btn-block" href="#">Upcoming products <br>
 				<small>Click to view</small></a> <br> <br>
-			
+
 
 		</div>
 		<div class="span9">
@@ -87,9 +87,11 @@ New Products
 									<c:forEach var="item" items="${new_product}" varStatus="loop">
 										<li class="span3">
 											<div class="thumbnail">
-												<a class="zoomTool" href="chi-tiet-san-pham/${item.id_product}"
+												<a class="zoomTool"
+													href="chi-tiet-san-pham/${item.id_product}"
 													title="add to cart"><span class="icon-search"></span>
-													QUICK VIEW</a> <a href="chi-tiet-san-pham/${item.id_product}" class="tag"></a> <a
+													QUICK VIEW</a> <a href="chi-tiet-san-pham/${item.id_product}"
+													class="tag"></a> <a
 													href="chi-tiet-san-pham/${item.id_product}"><img
 													src="<c:url value="/assets/user/img/${item.img}"/>"
 													alt="bootstrap-ring"></a>
@@ -118,7 +120,7 @@ New Products
 	Featured Products
 	-->
 		<div class="well well-small">
-			
+
 			<hr class="soften" />
 			<div class="row-fluid">
 				<c:if test="${highlight.size()>0 }">
@@ -133,7 +135,8 @@ New Products
 									<div class="caption">
 										<h5>${ item.name }</h5>
 										<h4>
-											<a class="defaultBtn" href="product_details.html"
+											<a class="defaultBtn"
+												href="chi-tiet-san-pham/${item.id_product}"
 												title="Click to view"><span class="icon-zoom-in"></span></a>
 											<a class="shopBtn"
 												href="<c:url value="/addCart/${item.id_product}"/>"
@@ -156,7 +159,7 @@ New Products
 				</c:if>
 			</div>
 		</div>
-		
+
 	</div>
 	</div>
 

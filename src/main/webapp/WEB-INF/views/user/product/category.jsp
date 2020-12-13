@@ -46,7 +46,7 @@ background-color: #ddd;
 					<c:forEach var="item" items="${productPaginate}" varStatus="loop">
 						<li class="span4">
 							<div class="thumbnail">
-								<a href="product_details.html" class="overlay"></a> <a
+								<a href="${pageContext.request.contextPath}/chi-tiet-san-pham/${item.id_product}" class="overlay"></a> <a
 									class="zoomTool" href="product_details.html"
 									title="add to cart"><span class="icon-search"></span> QUICK
 									VIEW</a> <a href="<c:url value="/chi-tiet-san-pham/${item.id_product}"/>"><img

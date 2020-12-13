@@ -19,6 +19,7 @@ public class ProductController extends BaseController {
 		_mavShare.setViewName("user/product/product");
 		Product productDto = _productServiceImpl.getProductById(id);
 		_mavShare.addObject("productById", productDto);
+		_mavShare.addObject("category", _homeServiceImpl.getDataCategory());
 		_mavShare.addObject("productByCId", _productServiceImpl.getProductByCId(productDto.getId_category()));
 		return _mavShare;
 	}

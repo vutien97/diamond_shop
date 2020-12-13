@@ -28,7 +28,7 @@ public class UserController extends BaseController {
 	public ModelAndView register() {
 		_mavShare.setViewName("user/account/register");
 		_mavShare.addObject("user", new User());
-
+		_mavShare.addObject("category", _homeServiceImpl.getDataCategory());
 		return _mavShare;
 	}
 
