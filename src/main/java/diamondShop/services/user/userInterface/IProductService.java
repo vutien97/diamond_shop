@@ -16,4 +16,5 @@ public interface IProductService {
 	public List<Product> getListProduct();
 	public List<Product> getListProductPaginate(int start, int totalProductIn1Page);
 	public void deleteProductById(Product product);
+	public int addProduct(Product product);
 }

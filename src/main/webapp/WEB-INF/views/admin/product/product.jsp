@@ -35,7 +35,7 @@ background-color: #ddd;
 		<div class="btn-group">
 			<c:forEach var="i" begin="0" end="${totalItem}">
 				<a class="btn btn-default"
-					href="${pageContext.request.contextPath}/admin/edit_product/${i+1}"><c:out
+					href="${pageContext.request.contextPath}/admin/product/${i+1}"><c:out
 						value="${i+1}" /></a>
 			</c:forEach>
 		</div>
@@ -62,7 +62,7 @@ background-color: #ddd;
 					<td style="text-align: right; width: 150px;">${item.quantity}</td>
 					<td style="text-align: center; width: 150px;"><a
 						class="btn btn-default" href="#"><i class="fa fa-edit"></i></a> <a
-						class="btn btn-default" href="<c:url value="product/delete/${item.id_product}"/>" title="Xóa sản phẩm"><i class="fa fa-remove"></i></a></td>
+						class="btn btn-default" href="${pageContext.request.contextPath}/admin/product/delete/${item.id_product}" title="Xóa sản phẩm"><i class="fa fa-remove"></i></a></td>
 				</tr>
 			</c:forEach>
 		</tbody>

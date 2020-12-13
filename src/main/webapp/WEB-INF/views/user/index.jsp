@@ -87,10 +87,10 @@ New Products
 									<c:forEach var="item" items="${new_product}" varStatus="loop">
 										<li class="span3">
 											<div class="thumbnail">
-												<a class="zoomTool" href="product_details.html"
+												<a class="zoomTool" href="chi-tiet-san-pham/${item.id_product}"
 													title="add to cart"><span class="icon-search"></span>
-													QUICK VIEW</a> <a href="#" class="tag"></a> <a
-													href="product_details.html"><img
+													QUICK VIEW</a> <a href="chi-tiet-san-pham/${item.id_product}" class="tag"></a> <a
+													href="chi-tiet-san-pham/${item.id_product}"><img
 													src="<c:url value="/assets/user/img/${item.img}"/>"
 													alt="bootstrap-ring"></a>
 											</div>
@@ -118,11 +118,7 @@ New Products
 	Featured Products
 	-->
 		<div class="well well-small">
-			<h3>
-				<a class="btn btn-mini pull-right" href="products.html"
-					title="View more">VIew More<span class="icon-plus"></span></a> Sản
-				phẩm nổi bật
-			</h3>
+			
 			<hr class="soften" />
 			<div class="row-fluid">
 				<c:if test="${highlight.size()>0 }">
@@ -130,7 +126,7 @@ New Products
 						<c:forEach var="item" items="${highlight}" varStatus="loop">
 							<li class="span4">
 								<div class="thumbnail">
-									<a class="zoomTool" href="product_details.html"
+									<a class="zoomTool" href="chi-tiet-san-pham/${item.id_product}"
 										title="add to cart"><span class="icon-search"></span>
 										QUICK VIEW</a> <a href="chi-tiet-san-pham/${item.id_product}"><img
 										src="<c:url value="/assets/user/img/${item.img}"/>" alt=""></a>

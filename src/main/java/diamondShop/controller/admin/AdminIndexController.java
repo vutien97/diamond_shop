@@ -5,7 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import diamondShop.services.admin.adminInterface.AdminHomeServiceImpl;
+import diamondShop.services.admin.AdminHomeServiceImpl;
 
 @Controller
 public class AdminIndexController extends BaseAdminController {

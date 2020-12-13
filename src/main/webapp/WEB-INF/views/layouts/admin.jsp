@@ -145,11 +145,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			        </li>
 			        
 			          
-			        <li id="menu-academico" ><a href="#"><i class="fa fa-file-text"></i><span>Hóa đơn</span><span class="fa fa-angle-right" style="float: right"></span></a>
-			          <ul id="menu-academico-sub" >
-			          	 <li id="menu-academico-boletim" ><a href="login.html">Login</a></li>
-			            <li id="menu-academico-avaliacoes" ><a href="signup.html">Sign Up</a></li>		           
-			          </ul>
+			        <li id="menu-academico" ><a href="${pageContext.request.contextPath}/admin/bill"><i class="fa fa-file-text"></i><span>Hóa đơn</span><span style="float: right"></span></a>
+			          
 			        </li>
 			        
 			       
@@ -162,8 +159,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			         
 			         <li><a href="#"><i class="fa fa-shopping-cart"></i><span>Sản phẩm</span><span class="fa fa-angle-right" style="float: right"></span></a>
 			         	<ul id="menu-academico-sub" >
-				            <li id="menu-academico-avaliacoes" ><a href="<c:url value="product"/>">Danh sách sản phẩm</a></li>
-				            <li id="menu-academico-boletim" ><a href="price.html">Thêm sản phẩm</a></li>
+				            <li id="menu-academico-avaliacoes" ><a href="${pageContext.request.contextPath}/admin/product">Danh sách sản phẩm</a></li>
+				            <li id="menu-academico-boletim" ><a href="${pageContext.request.contextPath}/admin/product/add">Thêm sản phẩm</a></li>
 			             </ul>
 			         </li>
 			      </ul>

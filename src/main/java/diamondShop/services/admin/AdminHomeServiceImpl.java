@@ -1,4 +1,4 @@
-package diamondShop.services.admin.adminInterface;
+package diamondShop.services.admin;
 
 import java.util.List;
 
@@ -9,6 +9,7 @@ import diamondShop.dao.BillDao;
 import diamondShop.dao.UserDao;
 import diamondShop.entites.Bill;
 import diamondShop.entites.User;
+import diamondShop.services.admin.adminInterface.IAdminHomeService;
 
 @Service
 public class AdminHomeServiceImpl implements IAdminHomeService {

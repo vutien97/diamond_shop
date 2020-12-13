@@ -14,9 +14,6 @@ public class Product {
 	private boolean highlight;
 	private boolean new_product;
 	private String detail;
-	private long id_color;
-	private String name_color;
-	private String code_color;
 	private String img;
 	private Timestamp created_at;
 	private Timestamp updated_at;
@@ -104,30 +101,6 @@ public class Product {
 
 	public void setDetail(String detail) {
 		this.detail = detail;
-	}
-
-	public long getId_color() {
-		return id_color;
-	}
-
-	public void setId_color(long id_color) {
-		this.id_color = id_color;
-	}
-
-	public String getName_color() {
-		return name_color;
-	}
-
-	public void setName_color(String name_color) {
-		this.name_color = name_color;
-	}
-
-	public String getCode_color() {
-		return code_color;
-	}
-
-	public void setCode_color(String code_color) {
-		this.code_color = code_color;
 	}
 
 	public String getImg() {

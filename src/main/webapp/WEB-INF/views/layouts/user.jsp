@@ -48,7 +48,7 @@
 							class="icon-youtube"></span></a> <a href="https://tumblr.com/"><span
 							class="icon-tumblr"></span></a>
 					</div>
-					<a class="active" href="<c:url value="/trang-chu/"/>"> <span class="icon-home"></span>
+					<a href="<c:url value="/trang-chu/"/>"> <span class="icon-home"></span>
 						Trang chủ</a> 
 						
 					

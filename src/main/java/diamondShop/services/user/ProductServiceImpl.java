@@ -60,5 +60,9 @@ public class ProductServiceImpl implements IProductService {
 	public void deleteProductById(Product product) {
 		productDao.deleteProductById(product);
 	}
+	
+	public int addProduct(Product product) {
+		return productDao.addProduct(product);
+	}
 
 }

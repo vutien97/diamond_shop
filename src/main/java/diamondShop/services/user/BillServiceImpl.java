@@ -1,6 +1,7 @@
 package diamondShop.services.user;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,6 +34,16 @@ public class BillServiceImpl implements IBillService {
 			billDetail.setTotal(itemCart.getValue().getTotalPrice());
 			billDao.addBillDetail(billDetail);
 		}
+	}
+	
+	public List<Bill> in1Week() {
+		return billDao.billIn1Week();
+	}
+
+	@Override
+	public List<Bill> billIn1WeekPaginate(int start, int billIn1Page) {
+		// TODO Auto-generated method stub
+		return billDao.billIn1WeekPaginate(start, billIn1Page);
 	}
 
 }

@@ -5,8 +5,8 @@
 <div class="header-main">
 	<div class="header-left">
 		<div class="logo-name">
-			<a href="index.html">
-				<h1>Shoppy</h1> <!--<img id="logo" src="" alt="Logo"/>-->
+			<a href="${pageContext.request.contextPath}/admin/admin-index">
+				<h1>Diamond Shop</h1> <!--<img id="logo" src="" alt="Logo"/>-->
 			</a>
 		</div>
 		<!--search-box-->

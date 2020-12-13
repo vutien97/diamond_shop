@@ -1,9 +1,12 @@
 package diamondShop.controller.user;
 
+import java.io.IOException;
 import java.sql.Timestamp;
 import java.util.Date;
 
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,9 +32,9 @@ public class UserController extends BaseController {
 		return _mavShare;
 	}
 
-	@RequestMapping(value = "/dang-ky", method = RequestMethod.POST, produces = "application/x-www-form-urlencoded;charset=UTF-8" + 
-			"")
-	public ModelAndView createAcc(@ModelAttribute("user") User user) {
+	@RequestMapping(value = "/dang-ky", method = RequestMethod.POST)
+	public ModelAndView createAcc(HttpServletRequest request, HttpServletResponse response,
+			@ModelAttribute("user") User user) throws ServletException, IOException {
 		Date date = new Date();
 		user.setCreated_at(new Timestamp(date.getTime()));
 		int count = accountServiceImpl.addAccount(user);
@@ -41,7 +44,8 @@ public class UserController extends BaseController {
 			_mavShare.addObject("status", "Đăng ký thất bại!");
 		}
 		_mavShare.setViewName("user/account/register");
-		
+		request.setCharacterEncoding("utf-8");
+		response.setCharacterEncoding("utf-8");
 		return _mavShare;
 	}
 
@@ -61,6 +65,6 @@ public class UserController extends BaseController {
 	public String Logout(HttpSession session, HttpServletRequest request) {
 		session.removeAttribute("LoginInfo");
 		_mavShare.setViewName("user/index");
-		return "redirect:/trang-chu" ;
+		return "redirect:/trang-chu";
 	}
 }

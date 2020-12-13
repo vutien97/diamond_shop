@@ -22,10 +22,7 @@ public class ProductMapper implements RowMapper<Product> {
 		productDto.setHighlight(rs.getBoolean("highlight"));
 		productDto.setNew_product(rs.getBoolean("new_product"));
 		productDto.setDetail(rs.getString("detail"));
-		productDto.setId_color(rs.getLong("id_color"));
-		productDto.setName_color(rs.getString("name_color"));
 		productDto.setImg(rs.getString("img"));
-		productDto.setCode_color(rs.getString("code_color"));
 		productDto.setCreated_at(rs.getTimestamp("created_at"));
 		productDto.setUpdated_at(rs.getTimestamp("updated_at"));
 		productDto.setQuantity(rs.getInt("quantity"));
