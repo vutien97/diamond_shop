@@ -70,7 +70,7 @@ background-color: #ddd;
 							type="number" groupingUsed="true" value="${item.price}" />₫</td>
 					<td style="text-align: right; width: 150px;">${item.quantity}</td>
 					<td style="text-align: center; width: 150px;"><a
-						class="btn btn-default" href="#"><i class="fa fa-edit"></i></a> <a
+						class="btn btn-default" href="${pageContext.request.contextPath}/admin/product/edit/${item.id_product}" title="Edit sản phẩm"><i class="fa fa-edit"></i></a> <a
 						class="btn btn-default" href="${pageContext.request.contextPath}/admin/product/delete/${item.id_product}" title="Xóa sản phẩm"><i class="fa fa-remove"></i></a></td>
 				</tr>
 			</c:forEach>

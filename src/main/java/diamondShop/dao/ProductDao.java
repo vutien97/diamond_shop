@@ -63,8 +63,6 @@ public class ProductDao extends BaseDao {
 		sql.append(" LIMIT " + start + ", " + totalPage);
 		return sql.toString();
 	}
-	
-	
 
 	public List<Product> getHighlightProduct() {
 		String sql = SqlProductQuery(NO, YES);
@@ -86,8 +84,6 @@ public class ProductDao extends BaseDao {
 		listProductDto = _jdbcTemplate.query(sql.toString(), new ProductMapper());
 		return listProductDto;
 	}
-	
-	
 
 	public List<Product> getListProductByCategoryId(int id) {
 		String sql = SqlProductByCategoryIdQuery(id).toString();
@@ -102,7 +98,7 @@ public class ProductDao extends BaseDao {
 		listProductDto = _jdbcTemplate.query(sql, new ProductMapper());
 		return listProductDto;
 	}
-	
+
 	public List<Product> getListProductPaginate(int start, int totalProductIn1Page) {
 		StringBuffer sql = SqlQuery();
 		sql.append(" LIMIT " + start + ", " + totalProductIn1Page);
@@ -138,21 +134,20 @@ public class ProductDao extends BaseDao {
 		int update = _jdbcTemplate.update(sql);
 		return update;
 	}
-	
+
 	public void deleteProductById(Product product) {
-		StringBuffer  varname1 = new StringBuffer();
+		StringBuffer varname1 = new StringBuffer();
 		varname1.append("DELETE FROM billdetail WHERE id_product = " + product.getId_product());
 		varname1.append(";");
 		_jdbcTemplate.update(varname1.toString());
 
-
-		StringBuffer  varname12 = new StringBuffer();
-		varname12.append("DELETE FROM products WHERE id = "  + product.getId_product());
+		StringBuffer varname12 = new StringBuffer();
+		varname12.append("DELETE FROM products WHERE id = " + product.getId_product());
 		_jdbcTemplate.update(varname12.toString());
 	}
-	
+
 	public int addProduct(Product product) {
-		StringBuffer  varname1 = new StringBuffer();
+		StringBuffer varname1 = new StringBuffer();
 		varname1.append("INSERT ");
 		varname1.append("INTO ");
 		varname1.append("`products` ");
@@ -183,8 +178,29 @@ public class ProductDao extends BaseDao {
 		varname1.append("    ," + product.getQuantity() + " ");
 		varname1.append("    ,'" + product.getImg() + "' ");
 		varname1.append(")");
-		
+
 		int insert = _jdbcTemplate.update(varname1.toString());
 		return insert;
+	}
+
+	public int updateDetailProduct(Product product) {
+		StringBuffer varname1 = new StringBuffer();
+		varname1.append("UPDATE ");
+		varname1.append("`products` ");
+		varname1.append("SET ");
+		varname1.append("`name`='" + product.getName() + "' ");
+		varname1.append(",`price`=" + product.getPrice() + " ");
+		varname1.append(",`title`='" + product.getTitle() + "' ");
+		varname1.append(",`highlight`=" + product.isHighlight() + " ");
+		varname1.append(",`new_product`=" + product.isNew_product() + " ");
+		varname1.append(",`detail`='" + product.getDetail() + "' ");
+		varname1.append(",`updated_at`= CURRENT_TIMESTAMP ");
+		varname1.append(",`quantity`='" + product.getQuantity() + "' ");
+		varname1.append(",`img`='" + product.getImg() + "' ");
+		varname1.append("WHERE ");
+		varname1.append("`products`.`id`=" + product.getId_product());
+		int update = _jdbcTemplate.update(varname1.toString());
+
+		return update;
 	}
 }

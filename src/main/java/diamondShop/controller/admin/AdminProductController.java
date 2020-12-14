@@ -28,7 +28,8 @@ public class AdminProductController extends BaseAdminController {
 	PaginateServiceImpl paginateServiceImpl = new PaginateServiceImpl();
 
 	@RequestMapping(value = "admin/product", method = RequestMethod.GET)
-	public ModelAndView listProduct(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public ModelAndView listProduct(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		_mavShare.setViewName("admin/product/product");
 		// _mavShare.addObject("list_product", productServiceImpl.getListProduct());
 		_mavShare.addObject("list_product", productServiceImpl.getListProductPaginate(0, 10));
@@ -45,30 +46,56 @@ public class AdminProductController extends BaseAdminController {
 		_mavShare.addObject("totalItem", (productServiceImpl.getListProduct().size() / 10));
 		return _mavShare;
 	}
-	
+
 	@RequestMapping(value = "admin/product/delete/{id}")
 	public String deleteProduct(HttpServletRequest request, HttpSession session, @PathVariable long id) {
 		Product product = productServiceImpl.getProductById(id);
 		productServiceImpl.deleteProductById(product);
 		return "redirect:" + request.getHeader("Referer");
 	}
-	
+
+	@RequestMapping(value = "admin/product/edit/{id}", method = RequestMethod.GET)
+	public ModelAndView editProduct(@PathVariable long id) {
+		Product product = productServiceImpl.getProductById(id);
+		_mavShare.addObject("product", product);
+		_mavShare.setViewName("admin/product/editProduct");
+		return _mavShare;
+	}
+
+	@RequestMapping(value = "admin/product/edit/{id}", method = RequestMethod.POST)
+	public ModelAndView editProduct(HttpServletRequest request, @ModelAttribute("product") Product product, @PathVariable long id) {
+		Product existProduct = productServiceImpl.getProductById(id);
+		existProduct.setName(product.getName());
+		existProduct.setPrice(product.getPrice());
+		existProduct.setTitle(product.getTitle());
+		existProduct.setQuantity(product.getQuantity());
+		existProduct.setImg(product.getImg());
+		existProduct.setNew_product(product.isNew_product());
+		existProduct.setHighlight(product.isHighlight());
+		existProduct.setDetail(product.getDetail());
+		productServiceImpl.updateDetailProduct(existProduct);
+		
+		_mavShare.addObject("product", existProduct);
+		_mavShare.setViewName("admin/product/editProduct");
+		return _mavShare;
+	}
+
 	@RequestMapping(value = "admin/product/add", method = RequestMethod.GET)
 	public ModelAndView addProduct() {
 		_mavShare.setViewName("admin/product/addProduct");
 		_mavShare.addObject("product", new Product());
 		return _mavShare;
 	}
-	
+
 	@RequestMapping(value = "admin/product/add", method = RequestMethod.POST)
 	public ModelAndView addProduct(@ModelAttribute("product") Product product) {
 		int count = productServiceImpl.addProduct(product);
-		if(count > 0) {
+		if (count > 0) {
 			_mavShare.addObject("status", "Thêm thành công!");
 		} else {
 			_mavShare.addObject("status", "Thêm thất bại!");
 		}
-		
+
 		_mavShare.setViewName("admin/product/addProduct");
 		return _mavShare;
 	}
