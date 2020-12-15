@@ -21,12 +21,12 @@
 					</c:forEach>
 
 
-					<li style="border: 0">&nbsp;</li>
+					<%-- <li style="border: 0">&nbsp;</li>
 					<li><a class="totalInCart" href="<c:url value="/gio-hang/"/>"><strong>Đã
 								mua <span class="badge badge-warning pull-right"
 								style="line-height: 18px;"><fmt:formatNumber
 										type="number" groupingUsed="true" value="${TotalPrice}" /> ₫</span>
-						</strong></a></li>
+						</strong></a></li> --%>
 				</ul>
 			</div>
 
@@ -49,8 +49,8 @@
 		</div>
 		<div class="span9">
 			<ul class="breadcrumb">
-				<li><a href="index.html">Trang chủ</a> <span class="divider">/</span></li>
-				<li><a href="products.html">Sản phẩm</a> <span class="divider">/</span></li>
+				<li><a href="${pageContext.request.contextPath}/trang-chu">Trang chủ</a> <span class="divider">/</span></li>
+				
 				<li class="active">Chi tiết sản phẩm</li>
 			</ul>
 			<div class="well well-small">

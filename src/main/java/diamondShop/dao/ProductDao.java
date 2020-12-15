@@ -106,6 +106,24 @@ public class ProductDao extends BaseDao {
 		listProductDto = _jdbcTemplate.query(sql.toString(), new ProductMapper());
 		return listProductDto;
 	}
+	
+	public List<Product> getListProductBySearch(String search){
+		StringBuffer sql = SqlQuery();
+		sql.append("WHERE 1 = 1 ");
+		sql.append("and name LIKE '%" + search + "%' ");
+		List<Product> listProducts = _jdbcTemplate.query(sql.toString(), new ProductMapper());
+		return listProducts;
+	}
+	
+	public List<Product> getListProductBySearchPaginate(String search, int start, int totalProductIn1Page){
+		StringBuffer sql = SqlQuery();
+		sql.append("WHERE 1 = 1 ");
+		sql.append("and name LIKE '%" + search + "%' ");
+		sql.append(" LIMIT " + start + ", " + totalProductIn1Page);
+	
+		List<Product> listProducts = _jdbcTemplate.query(sql.toString(), new ProductMapper());
+		return listProducts;
+	} 
 
 	private String SqlProductByIdQuery(long id) {
 		StringBuffer sql = SqlQuery();
@@ -203,4 +221,6 @@ public class ProductDao extends BaseDao {
 
 		return update;
 	}
+	
+	
 }

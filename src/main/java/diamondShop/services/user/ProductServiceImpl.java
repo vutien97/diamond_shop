@@ -71,4 +71,16 @@ public class ProductServiceImpl implements IProductService {
 		return productDao.updateDetailProduct(product);
 	}
 
+	@Override
+	public List<Product> getListProductBySearch(String search) {
+		// TODO Auto-generated method stub
+		return productDao.getListProductBySearch(search);
+	}
+
+	@Override
+	public List<Product> getListProductBySearchPaginate(String search, int start, int totalProductIn1Page) {
+		// TODO Auto-generated method stub
+		return productDao.getListProductBySearchPaginate(search, start, totalProductIn1Page);
+	}
+
 }

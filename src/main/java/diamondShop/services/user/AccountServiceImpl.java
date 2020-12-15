@@ -60,4 +60,11 @@ public class AccountServiceImpl implements IAccountService {
 		return userDao.getUserById(id);
 	}
 
+	@Override
+	public int updateUser(User user) {
+		user.setPassword(BCrypt.hashpw(user.getPassword(), BCrypt.gensalt(8)));
+		// TODO Auto-generated method stub
+		return userDao.updateUser(user);
+	}
+
 }

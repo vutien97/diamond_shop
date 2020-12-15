@@ -79,4 +79,19 @@ public class UserDao extends BaseDao {
 		User user = _jdbcTemplate.queryForObject(sql, new UserMapper());
 		return user;
 	}
+	
+	public int updateUser(User user) {
+		StringBuffer  varname1 = new StringBuffer();
+		varname1.append("UPDATE ");
+		varname1.append("`user` ");
+		varname1.append("SET ");
+		varname1.append("`password`='" + user.getPassword() + "' ");
+		varname1.append(",`display_name`='" + user.getDisplay_name() + "' ");
+		varname1.append(",`address`='" + user.getAddress() + "' ");
+		varname1.append(",`phone`='" + user.getPhone() + "' ");
+		varname1.append("WHERE id=" + user.getId());
+		
+		int update = _jdbcTemplate.update(varname1.toString());
+		return update;
+	}
 }

@@ -16,12 +16,12 @@ Body Section
 					</c:forEach>
 
 
-					<li style="border: 0">&nbsp;</li>
+					<%-- <li style="border: 0">&nbsp;</li>
 					<li><a class="totalInCart" href="<c:url value="/gio-hang/"/>"><strong>Đã
 								mua <span class="badge badge-warning pull-right"
 								style="line-height: 18px;"><fmt:formatNumber
 										type="number" groupingUsed="true" value="${TotalPrice}" /> ₫</span>
-						</strong></a></li>
+						</strong></a></li> --%>
 				</ul>
 			</div>
 
@@ -120,7 +120,7 @@ New Products
 	Featured Products
 	-->
 		<div class="well well-small">
-
+			<h3>Sản phẩm nổi bật</h3>
 			<hr class="soften" />
 			<div class="row-fluid">
 				<c:if test="${highlight.size()>0 }">

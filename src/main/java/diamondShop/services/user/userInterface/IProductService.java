@@ -18,4 +18,6 @@ public interface IProductService {
 	public void deleteProductById(Product product);
 	public int addProduct(Product product);
 	public int updateDetailProduct(Product product);
+	public List<Product> getListProductBySearch(String search);
+	public List<Product> getListProductBySearchPaginate(String search, int start, int totalProductIn1Page);
 }

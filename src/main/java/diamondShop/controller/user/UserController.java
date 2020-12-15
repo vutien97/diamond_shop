@@ -12,6 +12,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -67,5 +68,27 @@ public class UserController extends BaseController {
 		session.removeAttribute("LoginInfo");
 		_mavShare.setViewName("user/index");
 		return "redirect:/trang-chu";
+	}
+	
+	@RequestMapping(value = "user/{id}", method = RequestMethod.GET)
+	public ModelAndView editProfile(@PathVariable long id) {
+		User user = accountServiceImpl.getUserById(id);
+		_mavShare.addObject("user", user);
+		_mavShare.setViewName("user/account/editProfile");
+		return _mavShare;
+	}
+	
+	@RequestMapping(value = "user/{id}", method = RequestMethod.POST)
+	public ModelAndView editProfile(@ModelAttribute("user") User user ,@PathVariable long id) {
+		User existUser = accountServiceImpl.getUserById(id);
+		existUser.setPassword(user.getPassword());
+		existUser.setDisplay_name(user.getDisplay_name());
+		existUser.setAddress(user.getAddress());
+		existUser.setPhone(user.getPhone());
+		accountServiceImpl.updateUser(existUser);
+		
+		_mavShare.addObject("user", existUser);
+		_mavShare.setViewName("user/account/editProfile");
+		return _mavShare;
 	}
 }
