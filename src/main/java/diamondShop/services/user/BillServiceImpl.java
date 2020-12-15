@@ -35,7 +35,7 @@ public class BillServiceImpl implements IBillService {
 			billDao.addBillDetail(billDetail);
 		}
 	}
-	
+
 	public List<Bill> in1Week() {
 		return billDao.billIn1Week();
 	}
@@ -44,6 +44,18 @@ public class BillServiceImpl implements IBillService {
 	public List<Bill> billIn1WeekPaginate(int start, int billIn1Page) {
 		// TODO Auto-generated method stub
 		return billDao.billIn1WeekPaginate(start, billIn1Page);
+	}
+
+	@Override
+	public List<Bill> getBillByUserEmail(String email) {
+		// TODO Auto-generated method stub
+		return billDao.getBillByUserEmail(email);
+	}
+
+	@Override
+	public List<BillDetail> getBillDetailByBillId(long id) {
+		// TODO Auto-generated method stub
+		return billDao.getBillDetailByBillId(id);
 	}
 
 }

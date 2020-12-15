@@ -104,6 +104,9 @@ public class CartController extends BaseController {
 
 	@RequestMapping(value = "/checkout", method = RequestMethod.POST)
 	public String CheckoutBill(HttpServletRequest request, HttpSession session, @ModelAttribute("bill") Bill bill) {
+		User loginInfo = (User) session.getAttribute("LoginInfo");
+		bill.setDisplay_name(loginInfo.getDisplay_name());
+		bill.setEmail(loginInfo.getEmail());
 		bill.setQuantity((int) session.getAttribute("TotalQuantity"));
 		bill.setTotal((double) session.getAttribute("TotalPrice"));
 		
@@ -112,7 +115,9 @@ public class CartController extends BaseController {
 			HashMap<Long, CartDto> cart = (HashMap<Long, CartDto>) session.getAttribute("Cart");
 			billServiceImpl.addBillDetail(cart);
 			productServiceImpl.updateProduct(cart);
+			
 		}
+		
 		session.removeAttribute("Cart");
 		return "redirect:/trang-chu";
 	}

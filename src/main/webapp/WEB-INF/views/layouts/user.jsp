@@ -63,6 +63,8 @@
 						<a href="${pageContext.request.contextPath}/user/${LoginInfo.id}"><span class="icon-user"></span>${LoginInfo.display_name}</a>
 						<a href="<c:url value="/dang-xuat"/>"><span class="icon-edit"></span>
 							Đăng xuất </a>
+							<a href="${pageContext.request.contextPath}/user/bill"><span class="icon-list-alt"></span>
+							Hóa đơn </a>
 					</c:if>
 
 					<a href="contact.html"><span class="icon-envelope"></span> Liên

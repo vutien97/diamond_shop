@@ -6,6 +6,7 @@ import org.springframework.stereotype.Repository;
 
 import diamondShop.entites.Bill;
 import diamondShop.entites.BillDetail;
+import diamondShop.entites.mapper.BillDetailMapper;
 import diamondShop.entites.mapper.BillMapper;
 
 @Repository
@@ -81,9 +82,22 @@ public class BillDao extends BaseDao {
 
 	public List<Bill> billIn1WeekPaginate(int start, int billIn1Page) {
 		StringBuffer sql = new StringBuffer();
-		sql.append("SELECT * FROM bill WHERE billDate BETWEEN DATE_SUB(CURRENT_TIMESTAMP, INTERVAL 7 DAY) AND CURRENT_TIMESTAMP");
+		sql.append(
+				"SELECT * FROM bill WHERE billDate BETWEEN DATE_SUB(CURRENT_TIMESTAMP, INTERVAL 7 DAY) AND CURRENT_TIMESTAMP");
 		sql.append(" LIMIT " + start + ", " + billIn1Page);
 		List<Bill> listBill = _jdbcTemplate.query(sql.toString(), new BillMapper());
 		return listBill;
+	}
+
+	public List<Bill> getBillByUserEmail(String email) {
+		String sql = "SELECT * FROM bill WHERE email ='" + email + "' ";
+		List<Bill> listBill = _jdbcTemplate.query(sql, new BillMapper());
+		return listBill;
+	}
+
+	public List<BillDetail> getBillDetailByBillId(long id) {
+		String sql = "SELECT * FROM billdetail WHERE id_bill =" + id;
+		List<BillDetail> list = _jdbcTemplate.query(sql, new BillDetailMapper());
+		return list;
 	}
 }

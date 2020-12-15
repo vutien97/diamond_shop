@@ -62,7 +62,7 @@
 
 					</tbody>
 				</table>
-				<br /> <a href="products.html" class="shopBtn btn-large"><span
+				<br /> <a href="${pageContext.request.contextPath}/trang-chu" class="shopBtn btn-large"><span
 					class="icon-arrow-left"></span> Tiếp tục mua sắm </a>
 					 
 				<c:if test="${empty LoginInfo}">

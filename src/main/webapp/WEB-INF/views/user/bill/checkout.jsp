@@ -59,13 +59,13 @@
 							<div class="control-group">
 								<label class="control-label">Họ tên<sup>*</sup></label>
 								<div class="controls">
-									<form:input type="text" class="span3" placeholder="Mời nhập họ tên" path="display_name" /> 
+									${LoginInfo.display_name} 
 								</div>
 							</div>
 							<div class="control-group">
 								<label class="control-label">Email <sup>*</sup></label>
 								<div class="controls">
-									<form:input type="text" placeholder="Email" path="email" /> 
+									${LoginInfo.email} 
 								</div>
 							</div>
 							<div class="control-group">

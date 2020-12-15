@@ -32,10 +32,7 @@
 									<h4>
 										<a class="shopBtn" href="<c:url value="/addCart/${item.id_product}"/>" title="Thêm vào giỏ"> Thêm vào giỏ </a>
 									</h4>
-									<div class="actionList">
-										<a class="pull-left" href="#">Add to Wish List </a> <a
-											class="pull-left" href="#"> Add to Compare </a>
-									</div>
+									
 									<br class="clr">
 								</div>
 							</div>
