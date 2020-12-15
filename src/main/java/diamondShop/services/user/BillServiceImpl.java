@@ -58,4 +58,41 @@ public class BillServiceImpl implements IBillService {
 		return billDao.getBillDetailByBillId(id);
 	}
 
+	@Override
+	public int updateBill(Bill bill) {
+		// TODO Auto-generated method stub
+		return billDao.updateBill(bill);
+	}
+
+	@Override
+	public List<Bill> getBillByStatus() {
+		// TODO Auto-generated method stub
+		return billDao.getBillByStatus();
+	}
+
+	@Override
+	public List<Bill> listBill() {
+		// TODO Auto-generated method stub
+		return billDao.listBill();
+	}
+
+	@Override
+	public List<Bill> listBillPaginate(int start, int billIn1Page) {
+		// TODO Auto-generated method stub
+		return billDao.listBillPaginate(start, billIn1Page);
+	}
+
+	@Override
+	public List<Bill> getBillByStatusPaginate(int start, int billIn1Page) {
+		// TODO Auto-generated method stub
+		return billDao.getBillByStatusPaginate(start, billIn1Page);
+	}
+
+	public Bill getBillById(long id) {
+		// TODO Auto-generated method stub
+		return billDao.getBillById(id);
+	}
+	
+	
+
 }

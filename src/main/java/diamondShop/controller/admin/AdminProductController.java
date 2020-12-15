@@ -88,7 +88,7 @@ public class AdminProductController extends BaseAdminController {
 	}
 
 	@RequestMapping(value = "admin/product/add", method = RequestMethod.POST)
-	public ModelAndView addProduct(@ModelAttribute("product") Product product) {
+	public String addProduct(@ModelAttribute("product") Product product) {
 		int count = productServiceImpl.addProduct(product);
 		if (count > 0) {
 			_mavShare.addObject("status", "Thêm thành công!");
@@ -96,7 +96,7 @@ public class AdminProductController extends BaseAdminController {
 			_mavShare.addObject("status", "Thêm thất bại!");
 		}
 
-		_mavShare.setViewName("admin/product/addProduct");
-		return _mavShare;
+		_mavShare.setViewName("/admin/product/addProduct");
+		return "redirect:/admin/product";
 	}
 }

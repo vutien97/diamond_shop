@@ -12,6 +12,7 @@ public class Bill {
 	private int quantity;
 	private String note;
 	private Timestamp billDate;
+	private Boolean status;
 
 	public Bill() {
 		super();
@@ -87,6 +88,14 @@ public class Bill {
 
 	public void setBillDate(Timestamp billDate) {
 		this.billDate = billDate;
+	}
+
+	public Boolean getStatus() {
+		return status;
+	}
+
+	public void setStatus(Boolean status) {
+		this.status = status;
 	}
 	
 }

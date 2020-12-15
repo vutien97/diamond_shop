@@ -16,4 +16,10 @@ public interface IBillService {
 	public List<Bill> billIn1WeekPaginate(int start, int billIn1Page);
 	public List<Bill> getBillByUserEmail(String email);
 	public List<BillDetail> getBillDetailByBillId(long id);
+	public int updateBill(Bill bill);
+	public List<Bill> listBill();
+	public List<Bill> listBillPaginate(int start, int billIn1Page);
+	public List<Bill> getBillByStatus();
+	public List<Bill> getBillByStatusPaginate(int start, int billIn1Page);
+	public Bill getBillById(long id);
 }

@@ -36,7 +36,7 @@ background-color: #ddd;
 		<div class="btn-group">
 			<c:forEach var="i" begin="0" end="${totalItem}">
 				<a class="btn btn-default"
-					href="${pageContext.request.contextPath}/admin/bill/${i+1}"><c:out
+					href="${pageContext.request.contextPath}/admin/not_pay_bill/${i+1}"><c:out
 						value="${i+1}" /></a>
 			</c:forEach>
 		</div>
@@ -53,7 +53,7 @@ background-color: #ddd;
 				<td style="text-align: center; width: 150px;"><b>Giá trị</b></td>
 				<td style="text-align: center; width: 150px;"><b>Ghi chú</b></td>
 				<td style="text-align: center; width: 150px;"><b>Ngày tạo</b></td>
-				<td style="text-align: center; width: 150px;"><b>Trạng thái</b></td>
+				<td style="text-align: center; width: 150px;"><b>Option</b></td>
 			</tr>
 			<c:forEach var="item" items="${list_bill}">
 				<tr class="unread checked">
@@ -66,15 +66,11 @@ background-color: #ddd;
 							type="number" groupingUsed="true" value="${item.total}" />₫</td>
 					<td style="text-align: center; width: 150px;">${item.note}</td>
 					<td style="text-align: center; width: 150px;">${item.billDate}</td>
-					<td class="hidden-xs" style="text-align: center; width: 100px;">
-						<c:choose>
-							<c:when test="${item.status == true}">Đã thanh toán</c:when>
-							<c:when test="${item.status == false}">Chưa thanh toán</c:when>
-						</c:choose>
-						<%-- ${item.id_category} --%>
-					</td>
+					
 					<!-- <td style="text-align: center; width: 150px;"><a
 						class="btn btn-default" href="#"><i class="fa fa-edit"></i></a></td> -->
+					<td style="text-align: center; width: 150px;"><a
+					class="btn btn-default" href="${pageContext.request.contextPath}/admin/not_pay_bill/edit/${item.id}" title="Edit hóa đơn"><i class="fa fa-edit"></i></a>
 				</tr>
 			</c:forEach>
 		</tbody>

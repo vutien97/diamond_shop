@@ -1,16 +1,11 @@
 package diamondShop.services.user;
 
-import java.sql.Timestamp;
-import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import diamondShop.dao.ProductDao;
-import diamondShop.dto.CartDto;
 import diamondShop.entites.Product;
 import diamondShop.services.user.userInterface.IProductService;
 
@@ -31,16 +26,18 @@ public class ProductServiceImpl implements IProductService {
 	}
 
 	@Override
-	public void updateProduct(HashMap<Long, CartDto> cart) {
-		Date date = new Date();
-		for (Map.Entry<Long, CartDto> itemCart : cart.entrySet()) {
-
-			Product product = getProductById(itemCart.getValue().getProduct().getId_product());
-			int quantity = product.getQuantity() - itemCart.getValue().getQuantity();
-			product.setQuantity(quantity);
-			product.setUpdated_at(new Timestamp(date.getTime()));
-			productDao.updateProduct(product);
-		}
+	public void updateProduct(Product product) {
+		/*
+		 * Date date = new Date(); for (Map.Entry<Long, CartDto> itemCart :
+		 * cart.entrySet()) {
+		 * 
+		 * Product product =
+		 * getProductById(itemCart.getValue().getProduct().getId_product()); int
+		 * quantity = product.getQuantity() - itemCart.getValue().getQuantity();
+		 * product.setQuantity(quantity); product.setUpdated_at(new
+		 * Timestamp(date.getTime()));
+		 */
+		productDao.updateProduct(product);
 
 	}
 
@@ -52,7 +49,7 @@ public class ProductServiceImpl implements IProductService {
 
 	@Override
 	public List<Product> getListProductPaginate(int start, int totalProductIn1Page) {
-		
+
 		return productDao.getListProductPaginate(start, totalProductIn1Page);
 	}
 
@@ -60,7 +57,7 @@ public class ProductServiceImpl implements IProductService {
 	public void deleteProductById(Product product) {
 		productDao.deleteProductById(product);
 	}
-	
+
 	public int addProduct(Product product) {
 		return productDao.addProduct(product);
 	}

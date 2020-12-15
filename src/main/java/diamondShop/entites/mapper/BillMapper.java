@@ -21,6 +21,7 @@ public class BillMapper implements RowMapper<Bill> {
 		bill.setQuantity(rs.getInt("quantity"));
 		bill.setNote(rs.getString("note"));
 		bill.setBillDate(rs.getTimestamp("billDate"));
+		bill.setStatus(rs.getBoolean("status"));
 		return bill;
 	}
 

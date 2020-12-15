@@ -145,8 +145,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			        </li>
 			        
 			          
-			        <li id="menu-academico" ><a href="${pageContext.request.contextPath}/admin/bill"><i class="fa fa-file-text"></i><span>Hóa đơn</span><span style="float: right"></span></a>
-			          
+			        <li id="menu-academico" ><a href="#"><i class="fa fa-file-text" ></i><span>Hóa đơn</span><span class="fa fa-angle-right" style="float: right"></span></a>
+			          <ul id="menu-academico-sub" >
+				            <li id="menu-academico-avaliacoes" ><a href="${pageContext.request.contextPath}/admin/bill">Tất cả hóa đơn</a></li>
+				            <li id="menu-academico-boletim" ><a href="${pageContext.request.contextPath}/admin/not_pay_bill">Hóa đơn chưa thanh toán</a></li>
+			             </ul>
 			        </li>
 			        
 			       
