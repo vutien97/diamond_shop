@@ -41,7 +41,7 @@
 			<a class="shopBtn btn-block" href="#">Upcoming products <br>
 				<small>Click to view</small></a> <br> <br>
 		</div>
-		
+
 		<div class="span9">
 			<c:if test="${list_bill.size() == 0 }">
 				<h4>Bạn chưa có hóa đơn nào</h4>
@@ -57,7 +57,8 @@
 							<th>Tổng tiền</th>
 							<th>Ghi chú</th>
 							<th>Ngày tạo</th>
-
+							<th>Trạng thái</th>
+							<th></th>
 						</tr>
 					</thead>
 					<tbody>
@@ -72,7 +73,19 @@
 										value="${item.total}" /> ₫</td>
 								<td>${ item.note }</td>
 								<td>${ item.billDate }</td>
-
+								<td><c:choose>
+										<c:when test="${item.status == true}">Đã hoàn thành</c:when>
+										<c:when test="${item.status == false}">Chưa hoàn thành</c:when>
+									</c:choose> <%-- ${item.id_category} --%></td>
+								<td>
+									<a href="${pageContext.request.contextPath}/user/bill/${item.id}"
+										>Chi tiết <span
+										class="icon-arrow-right"></span>
+									</a>
+									<%-- <a class="btn btn-info"
+										href="${pageContext.request.contextPath}/admin/product/edit/${item.id_product}"
+										title="Edit sản phẩm"><i class="fa fa-edit"></i></a> --%>
+								</td>
 							</tr>
 						</c:forEach>
 

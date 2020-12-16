@@ -71,7 +71,7 @@ public class BillDao extends BaseDao {
 	}
 
 	public double totalIn1month() {
-		String sql = "SELECT SUM(total) FROM bill WHERE billDate BETWEEN DATE_SUB(CURRENT_TIMESTAMP, INTERVAL 30 DAY) AND CURRENT_TIMESTAMP";
+		String sql = "SELECT SUM(total) FROM bill WHERE status = 1 AND billDate BETWEEN DATE_SUB(CURRENT_TIMESTAMP, INTERVAL 30 DAY) AND CURRENT_TIMESTAMP";
 		double total = _jdbcTemplate.queryForObject(sql, Double.class);
 		return total;
 	}
@@ -141,5 +141,11 @@ public class BillDao extends BaseDao {
 		String sql = "SELECT * FROM bill WHERE id =" + id;
 		Bill bill = _jdbcTemplate.queryForObject(sql, new BillMapper());
 		return bill;
+	}
+	
+	public List<Bill> getListBillByEmail(String search){
+		String sql = "SELECT * FROM `bill` WHERE email LIKE '%" + search + "%' AND status = 0";
+		List<Bill> listBill = _jdbcTemplate.query(sql, new BillMapper());
+		return listBill;
 	}
 }

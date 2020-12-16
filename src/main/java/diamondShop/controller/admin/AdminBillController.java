@@ -1,6 +1,7 @@
 package diamondShop.controller.admin;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import diamondShop.entites.Bill;
@@ -82,6 +84,15 @@ public class AdminBillController extends BaseAdminController {
 	@RequestMapping(value = "admin/not_pay_bill/edit/{id}", method = RequestMethod.GET)
 	public ModelAndView editBill(@PathVariable long id) {
 		Bill bill = billServiceImpl.getBillById(id);
+		List<Product> listProduct = new ArrayList<Product>();
+		List<BillDetail> listBillDetail = billServiceImpl.getBillDetailByBillId(bill.getId());
+		for (BillDetail billDetail : listBillDetail) {
+			Product product = productServiceImpl.getProductById(billDetail.getId_product());	
+			listProduct.add(product);
+		}
+		
+		_mavShare.addObject("listBillDetail", listBillDetail);
+		_mavShare.addObject("listProduct", listProduct);
 		_mavShare.addObject("bill", bill);
 		_mavShare.setViewName("admin/bill/edit_bill");
 		return _mavShare;
@@ -107,5 +118,13 @@ public class AdminBillController extends BaseAdminController {
 		
 		_mavShare.addObject("bill", existBill);
 		return "redirect:/admin/not_pay_bill";
+	}
+	
+	@RequestMapping(value = "admin/not_pay_bill/search")
+	public ModelAndView searchBill(@RequestParam(required=false, name="search") String search) {
+		_mavShare.setViewName("admin/bill/search_bill");
+		List<Bill> listBill = billServiceImpl.getListBillByEmail(search);
+		_mavShare.addObject("list_bill", listBill);
+		return _mavShare;
 	}
 }

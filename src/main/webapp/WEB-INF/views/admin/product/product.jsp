@@ -54,7 +54,9 @@ background-color: #ddd;
 			</tr>
 			<c:forEach var="item" items="${list_product}">
 				<tr class="unread checked">
-					<td class="hidden-xs">${item.img}</td>
+					<td class="hidden-xs"><img width="100"
+									src="<c:url value="/assets/user/img/${item.img}"/>"
+									alt=""></td>
 					<td class="hidden-xs">${item.name}</td>
 					<td class="hidden-xs" style="text-align: center; width: 100px;">
 						<c:choose>

@@ -92,6 +92,12 @@ public class BillServiceImpl implements IBillService {
 		// TODO Auto-generated method stub
 		return billDao.getBillById(id);
 	}
+
+	@Override
+	public List<Bill> getListBillByEmail(String search) {
+		// TODO Auto-generated method stub
+		return billDao.getListBillByEmail(search);
+	}
 	
 	
 

@@ -2,6 +2,7 @@ package diamondShop.controller.user;
 
 import java.io.IOException;
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -19,6 +20,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import diamondShop.entites.Bill;
+import diamondShop.entites.BillDetail;
+import diamondShop.entites.Product;
 import diamondShop.entites.User;
 import diamondShop.services.user.AccountServiceImpl;
 import diamondShop.services.user.BillServiceImpl;
@@ -107,6 +110,23 @@ public class UserController extends BaseController {
 		List<Bill> listBill = billServiceImpl.getBillByUserEmail(user.getEmail());
 		
 		_mavShare.addObject("list_bill", listBill);
+		return _mavShare;
+	}
+	
+	@RequestMapping(value = "user/bill/{id}", method = RequestMethod.GET)
+	public ModelAndView billDetail(@PathVariable long id) {
+		_mavShare.setViewName("user/bill/bill_detail");
+		List<Product> listProduct = new ArrayList<Product>();
+		
+		List<BillDetail> listBillDetail = billServiceImpl.getBillDetailByBillId(id);
+		for (BillDetail billDetail : listBillDetail) {
+			Product product = productServiceImpl.getProductById(billDetail.getId_product());	
+			listProduct.add(product);
+		}
+		
+		_mavShare.addObject("listBillDetail", listBillDetail);
+		_mavShare.addObject("listProduct", listProduct);
+		
 		return _mavShare;
 	}
 }

@@ -22,4 +22,5 @@ public interface IBillService {
 	public List<Bill> getBillByStatus();
 	public List<Bill> getBillByStatusPaginate(int start, int billIn1Page);
 	public Bill getBillById(long id);
+	public List<Bill> getListBillByEmail(String search);
 }
