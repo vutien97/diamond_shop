@@ -43,7 +43,6 @@
 	<div class="clearfix"></div>
 	<div class="pagination">
 		<span class="text-muted m-r-sm">Pages </span>
-
 		<div class="btn-group">
 			<c:forEach var="i" begin="0" end="${totalItem}">
 				<a class="btn btn-default"

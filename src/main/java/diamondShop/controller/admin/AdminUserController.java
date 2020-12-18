@@ -11,12 +11,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import diamondShop.entites.User;
-import diamondShop.services.user.AccountServiceImpl;
+import diamondShop.services.user.UserServiceImpl;
 
 @Controller
 public class AdminUserController extends BaseAdminController{
 	@Autowired
-	AccountServiceImpl accountServiceImpl = new AccountServiceImpl();
+	UserServiceImpl accountServiceImpl = new UserServiceImpl();
 	
 	@RequestMapping(value = "admin/user", method = RequestMethod.GET)
 	public ModelAndView listUser() {

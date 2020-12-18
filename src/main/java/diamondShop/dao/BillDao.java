@@ -143,7 +143,7 @@ public class BillDao extends BaseDao {
 		return bill;
 	}
 	
-	public List<Bill> getListBillByEmail(String search){
+	public List<Bill> getListBillBySearchEmail(String search){
 		String sql = "SELECT * FROM `bill` WHERE email LIKE '%" + search + "%' AND status = 0";
 		List<Bill> listBill = _jdbcTemplate.query(sql, new BillMapper());
 		return listBill;

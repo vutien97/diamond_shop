@@ -123,7 +123,7 @@ public class AdminBillController extends BaseAdminController {
 	@RequestMapping(value = "admin/not_pay_bill/search")
 	public ModelAndView searchBill(@RequestParam(required=false, name="search") String search) {
 		_mavShare.setViewName("admin/bill/search_bill");
-		List<Bill> listBill = billServiceImpl.getListBillByEmail(search);
+		List<Bill> listBill = billServiceImpl.getListBillBySearchEmail(search);
 		_mavShare.addObject("list_bill", listBill);
 		return _mavShare;
 	}

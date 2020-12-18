@@ -1,6 +1,7 @@
 package diamondShop.controller.admin;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import diamondShop.entites.Product;
@@ -98,5 +100,13 @@ public class AdminProductController extends BaseAdminController {
 
 		_mavShare.setViewName("/admin/product/addProduct");
 		return "redirect:/admin/product";
+	}
+	
+	@RequestMapping(value = "admin/product/search")
+	public ModelAndView searchBill(@RequestParam(required=false, name="search") String search) {
+		_mavShare.setViewName("admin/product/search_product");
+		List<Product> listProduct = productServiceImpl.getListProductBySearch(search);
+		_mavShare.addObject("list_product", listProduct);
+		return _mavShare;
 	}
 }

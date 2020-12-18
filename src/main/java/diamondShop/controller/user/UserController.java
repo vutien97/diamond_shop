@@ -23,14 +23,14 @@ import diamondShop.entites.Bill;
 import diamondShop.entites.BillDetail;
 import diamondShop.entites.Product;
 import diamondShop.entites.User;
-import diamondShop.services.user.AccountServiceImpl;
+import diamondShop.services.user.UserServiceImpl;
 import diamondShop.services.user.BillServiceImpl;
 import diamondShop.services.user.ProductServiceImpl;
 
 @Controller
 public class UserController extends BaseController {
 	@Autowired
-	AccountServiceImpl accountServiceImpl = new AccountServiceImpl();
+	UserServiceImpl accountServiceImpl = new UserServiceImpl();
 	@Autowired
 	BillServiceImpl billServiceImpl = new BillServiceImpl();
 	@Autowired

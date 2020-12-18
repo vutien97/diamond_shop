@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 import diamondShop.entites.User;
 
 @Service
-public interface IAccountService {
+public interface IUserService {
 	public List<User> getAllUser();
 	public int addAccount(User user);
 	public User findUserByLogin(User user);

@@ -63,9 +63,9 @@
 										style="width: 100%"></a>
 								</div>
 							</div>
-							<a class="left carousel-control" href="#myCarousel"
+							<!-- <a class="left carousel-control" href="#myCarousel"
 								data-slide="prev">‹</a> <a class="right carousel-control"
-								href="#myCarousel" data-slide="next">›</a>
+								href="#myCarousel" data-slide="next">›</a> -->
 						</div>
 					</div>
 					<div class="span7">

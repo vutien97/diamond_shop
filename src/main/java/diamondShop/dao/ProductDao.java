@@ -58,7 +58,7 @@ public class ProductDao extends BaseDao {
 		return sql;
 	}
 
-	private String SqlProductPaginate(int id, int start, int totalPage) {
+	private String SqlProductByCIdPaginate(int id, int start, int totalPage) {
 		StringBuffer sql = SqlProductByCategoryIdQuery(id);
 		sql.append(" LIMIT " + start + ", " + totalPage);
 		return sql.toString();
@@ -92,8 +92,8 @@ public class ProductDao extends BaseDao {
 		return listProductDto;
 	}
 
-	public List<Product> getListProductPaginate(int id, int start, int totalProductIn1Page) {
-		String sql = SqlProductPaginate(id, start, totalProductIn1Page);
+	public List<Product> getListProductByCIdPaginate(int id, int start, int totalProductIn1Page) {
+		String sql = SqlProductByCIdPaginate(id, start, totalProductIn1Page);
 		List<Product> listProductDto = new ArrayList<Product>();
 		listProductDto = _jdbcTemplate.query(sql, new ProductMapper());
 		return listProductDto;

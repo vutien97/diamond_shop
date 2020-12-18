@@ -21,7 +21,7 @@ public class CategoryServiceImpl implements ICategoryService {
 
 	@Override
 	public List<Product> getDataProductPaginate(int id, int start, int totalProductIn1Page) {
-		List<Product> listProductDto = productDao.getListProductPaginate(id, start, totalProductIn1Page);
+		List<Product> listProductDto = productDao.getListProductByCIdPaginate(id, start, totalProductIn1Page);
 		return listProductDto;
 	}
 

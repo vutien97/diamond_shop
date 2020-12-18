@@ -36,7 +36,7 @@ public class BillServiceImpl implements IBillService {
 		}
 	}
 
-	public List<Bill> in1Week() {
+	public List<Bill> listBillIn1Week() {
 		return billDao.billIn1Week();
 	}
 
@@ -94,9 +94,9 @@ public class BillServiceImpl implements IBillService {
 	}
 
 	@Override
-	public List<Bill> getListBillByEmail(String search) {
+	public List<Bill> getListBillBySearchEmail(String search) {
 		// TODO Auto-generated method stub
-		return billDao.getListBillByEmail(search);
+		return billDao.getListBillBySearchEmail(search);
 	}
 	
 	

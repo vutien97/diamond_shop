@@ -17,12 +17,10 @@ public class PaginateServiceImpl implements IPaginateService {
 		return paginateDto;
 	}
 
-	// Tim id san pham cuoi cung cua trang hien tai
 	private int findEnd(int start, int limit, int totalData) {
 		return start + limit > totalData ? totalData : start + limit - 1;
 	}
 
-	// Tim id san pham dau tien cua trang hien tai
 	private int findStart(int currentPage, int limit) {
 		return (currentPage - 1) * limit + 1;
 	}

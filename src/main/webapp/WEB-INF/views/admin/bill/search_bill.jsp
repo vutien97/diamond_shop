@@ -13,9 +13,10 @@
 				placeholder="Tìm kiếm hóa đơn theo email của người dùng">
 			<button>Tìm kiếm</button>
 		</form>
+		<div class="clearfix"></div>
 	</div>
 	<!--//end-search-box-->
-	<div class="clearfix"></div>
+	
 	<c:if test="${list_bill.size() == 0}">
 		<h4>User không có hóa đơn nào chưa thanh toán!</h4>
 	</c:if>

@@ -8,10 +8,10 @@ import org.springframework.stereotype.Service;
 
 import diamondShop.dao.UserDao;
 import diamondShop.entites.User;
-import diamondShop.services.user.userInterface.IAccountService;
+import diamondShop.services.user.userInterface.IUserService;
 
 @Service
-public class AccountServiceImpl implements IAccountService {
+public class UserServiceImpl implements IUserService {
 	@Autowired
 	UserDao userDao = new UserDao();
 
