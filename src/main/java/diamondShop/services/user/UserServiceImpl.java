@@ -16,9 +16,14 @@ public class UserServiceImpl implements IUserService {
 	UserDao userDao = new UserDao();
 
 	public int addAccount(User user) {
+		
+		if(user.getEmail() == "" || user.getPassword() == "" || user.getDisplay_name() =="") {
+			return 0;
+		} else {
 		// Ma hoa mat khau
 		user.setPassword(BCrypt.hashpw(user.getPassword(), BCrypt.gensalt(8)));
 		return userDao.addUser(user);
+		}
 	}
 
 	@Override
@@ -33,7 +38,7 @@ public class UserServiceImpl implements IUserService {
 				return null;
 			}
 		}
-		return null;
+		return user;
 	}
 
 	@Override
@@ -62,9 +67,13 @@ public class UserServiceImpl implements IUserService {
 
 	@Override
 	public int updateUser(User user) {
+		if(user.getPassword() == "" || user.getDisplay_name() =="") {
+			return 0;
+		} else {
+		// Ma hoa mat khau
 		user.setPassword(BCrypt.hashpw(user.getPassword(), BCrypt.gensalt(8)));
-		// TODO Auto-generated method stub
 		return userDao.updateUser(user);
+		}
 	}
 
 }

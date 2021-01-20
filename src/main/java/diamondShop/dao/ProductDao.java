@@ -48,6 +48,9 @@ public class ProductDao extends BaseDao {
 		if (highlight) {
 			sql.append("LIMIT 6 ");
 		}
+		if (new_product) {
+			sql.append("LIMIT 12 ");
+		}
 		return sql.toString();
 	}
 

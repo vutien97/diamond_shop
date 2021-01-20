@@ -56,12 +56,7 @@ Body Section
 							<img style="width: 100%"
 								src="<c:url value="/assets/user/img/slide/${item.img}" />"
 								alt="bootstrap ecommerce templates">
-							<div class="carousel-caption">
-								<h4>${item.caption}</h4>
-								<p>
-									<span>${item.content}</span>
-								</p>
-							</div>
+							
 					</div>
 					</c:forEach>
 

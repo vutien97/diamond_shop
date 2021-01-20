@@ -23,9 +23,24 @@
 	color: white;
 	border: 1px solid #4CAF50;
 }
+.pagination
+ 
+a
+:hover
+:not
+ 
+(
+.active
+ 
+)
+{
+background-color
+:
+ 
+#ddd
+;
 
-.pagination a:hover:not (.active ) {
-	background-color: #ddd;
+
 }
 </style>
 </head>
@@ -39,17 +54,6 @@
 	</div>
 	<div class="clearfix"></div>
 
-	<div class="pagination">
-		<span class="text-muted m-r-sm">Pages </span>
-		<div class="btn-group">
-			<c:forEach var="i" begin="0" end="${totalItem}">
-				<a class="btn btn-default"
-					href="${pageContext.request.contextPath}/admin/product/${i+1}"><c:out
-						value="${i+1}" /></a>
-			</c:forEach>
-		</div>
-		<div class="clearfix"></div>
-	</div>
 
 	<table class="table tab-border">
 		<tbody>
@@ -90,4 +94,15 @@
 			</c:forEach>
 		</tbody>
 	</table>
+	<div class="pagination">
+		<span class="text-muted m-r-sm">Pages </span>
+		<div class="btn-group">
+			<c:forEach var="i" begin="0" end="${totalItem}">
+				<a class="btn btn-default"
+					href="${pageContext.request.contextPath}/admin/product/${i+1}"><c:out
+						value="${i+1}" /></a>
+			</c:forEach>
+		</div>
+		<div class="clearfix"></div>
+	</div>
 </body>

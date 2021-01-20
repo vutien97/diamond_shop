@@ -12,6 +12,7 @@
 		<div class="col-md-12 compose-right">
 			<div class="inbox-details-default">
 				<div class="inbox-details-body">
+			
 					<form:form method="POST" modelAttribute="product" class="com-mail"
 						action="${pageContext.request.contextPath}/admin/product/edit/${product.id_product}">
 						<label>Category: </label>

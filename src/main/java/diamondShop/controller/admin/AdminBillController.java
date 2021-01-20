@@ -32,13 +32,12 @@ public class AdminBillController extends BaseAdminController {
 	PaginateServiceImpl paginateServiceImpl = new PaginateServiceImpl();
 	@Autowired
 	ProductServiceImpl productServiceImpl = new ProductServiceImpl();
-	
 
 	@RequestMapping(value = "admin/bill", method = RequestMethod.GET)
 	public ModelAndView listProduct(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		_mavShare.setViewName("admin/bill/list_bill");
-		
+
 		_mavShare.addObject("list_bill", billServiceImpl.listBillPaginate(0, 10));
 		_mavShare.addObject("totalItem", (billServiceImpl.listBill().size() / 10));
 		request.setCharacterEncoding("utf-8");
@@ -56,57 +55,73 @@ public class AdminBillController extends BaseAdminController {
 		response.setCharacterEncoding("utf-8");
 		return _mavShare;
 	}
-	
+
+	@RequestMapping(value = "admin/bill/bill_detail/{id}", method = RequestMethod.GET)
+	public ModelAndView billDetail(@PathVariable long id) {
+		_mavShare.setViewName("admin/bill/bill_detail");
+		List<Product> listProduct = new ArrayList<Product>();
+
+		List<BillDetail> listBillDetail = billServiceImpl.getBillDetailByBillId(id);
+		for (BillDetail billDetail : listBillDetail) {
+			Product product = productServiceImpl.getProductById(billDetail.getId_product());
+			listProduct.add(product);
+		}
+
+		_mavShare.addObject("listBillDetail", listBillDetail);
+		_mavShare.addObject("listProduct", listProduct);
+		return _mavShare;
+	}
+
 	@RequestMapping(value = "admin/not_pay_bill", method = RequestMethod.GET)
 	public ModelAndView listNotPayBill(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		_mavShare.setViewName("admin/bill/not_pay_bill");
-		
+
 		_mavShare.addObject("list_bill", billServiceImpl.getBillByStatusPaginate(0, 10));
 		_mavShare.addObject("totalItem", (billServiceImpl.getBillByStatus().size() / 10));
 		request.setCharacterEncoding("utf-8");
 		response.setCharacterEncoding("utf-8");
 		return _mavShare;
 	}
-	
+
 	@RequestMapping(value = "admin/not_pay_bill/{page}", method = RequestMethod.GET)
-	public ModelAndView listNotPayBill(HttpServletRequest request, HttpServletResponse response, @PathVariable int page) 
+	public ModelAndView listNotPayBill(HttpServletRequest request, HttpServletResponse response, @PathVariable int page)
 			throws ServletException, IOException {
 		_mavShare.setViewName("admin/bill/not_pay_bill");
-		
+
 		_mavShare.addObject("list_bill", billServiceImpl.getBillByStatusPaginate((page - 1) * 10, 10));
 		_mavShare.addObject("totalItem", (billServiceImpl.getBillByStatus().size() / 10));
 		request.setCharacterEncoding("utf-8");
 		response.setCharacterEncoding("utf-8");
 		return _mavShare;
 	}
-	
+
 	@RequestMapping(value = "admin/not_pay_bill/edit/{id}", method = RequestMethod.GET)
 	public ModelAndView editBill(@PathVariable long id) {
 		Bill bill = billServiceImpl.getBillById(id);
 		List<Product> listProduct = new ArrayList<Product>();
 		List<BillDetail> listBillDetail = billServiceImpl.getBillDetailByBillId(bill.getId());
 		for (BillDetail billDetail : listBillDetail) {
-			Product product = productServiceImpl.getProductById(billDetail.getId_product());	
+			Product product = productServiceImpl.getProductById(billDetail.getId_product());
 			listProduct.add(product);
 		}
-		
+
 		_mavShare.addObject("listBillDetail", listBillDetail);
 		_mavShare.addObject("listProduct", listProduct);
 		_mavShare.addObject("bill", bill);
 		_mavShare.setViewName("admin/bill/edit_bill");
 		return _mavShare;
 	}
-	
+
 	@RequestMapping(value = "admin/not_pay_bill/edit/{id}", method = RequestMethod.POST)
 	public String editBill(HttpServletRequest request, @ModelAttribute("bill") Bill bill, @PathVariable long id) {
 		Bill existBill = billServiceImpl.getBillById(id);
-		if(bill.getStatus() == true) {
-		existBill.setStatus(bill.getStatus());
-		billServiceImpl.updateBill(existBill);
+		if (bill.getStatus() == true) {
+			existBill.setStatus(bill.getStatus());
+			billServiceImpl.updateBill(existBill);
 		}
-		
-		if(existBill.getStatus() == true) {
+
+		if (existBill.getStatus() == true) {
 			List<BillDetail> listBillDetail = billServiceImpl.getBillDetailByBillId(existBill.getId());
 			for (BillDetail billDetail : listBillDetail) {
 				int quantity = billDetail.getQuantity();
@@ -115,13 +130,13 @@ public class AdminBillController extends BaseAdminController {
 				productServiceImpl.updateProduct(product);
 			}
 		}
-		
+
 		_mavShare.addObject("bill", existBill);
 		return "redirect:/admin/not_pay_bill";
 	}
-	
+
 	@RequestMapping(value = "admin/not_pay_bill/search")
-	public ModelAndView searchBill(@RequestParam(required=false, name="search") String search) {
+	public ModelAndView searchBill(@RequestParam(required = false, name = "search") String search) {
 		_mavShare.setViewName("admin/bill/search_bill");
 		List<Bill> listBill = billServiceImpl.getListBillBySearchEmail(search);
 		_mavShare.addObject("list_bill", listBill);

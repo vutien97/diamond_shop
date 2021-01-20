@@ -8,6 +8,7 @@
 <body>
 	<h5>ADMIN LOGIN</h5>
 	<h3>${statusAdminLogin}</h3>
+	<h4>${statusLogin}</h4>
 	<form:form action="admin-login" method="POST" modelAttribute="user">
 		<div class="control-group">
 			<label class="control-label" for="inputEmail">E-mail</label>

@@ -65,7 +65,7 @@ public class AdminProductController extends BaseAdminController {
 	}
 
 	@RequestMapping(value = "admin/product/edit/{id}", method = RequestMethod.POST)
-	public ModelAndView editProduct(HttpServletRequest request, @ModelAttribute("product") Product product, @PathVariable long id) {
+	public String editProduct(HttpServletRequest request, @ModelAttribute("product") Product product, @PathVariable long id) {
 		Product existProduct = productServiceImpl.getProductById(id);
 		existProduct.setName(product.getName());
 		existProduct.setPrice(product.getPrice());
@@ -76,10 +76,10 @@ public class AdminProductController extends BaseAdminController {
 		existProduct.setHighlight(product.isHighlight());
 		existProduct.setDetail(product.getDetail());
 		productServiceImpl.updateDetailProduct(existProduct);
-		
+	
 		_mavShare.addObject("product", existProduct);
-		_mavShare.setViewName("admin/product/editProduct");
-		return _mavShare;
+		
+		return "redirect:" + request.getHeader("Referer");
 	}
 
 	@RequestMapping(value = "admin/product/add", method = RequestMethod.GET)
@@ -90,16 +90,15 @@ public class AdminProductController extends BaseAdminController {
 	}
 
 	@RequestMapping(value = "admin/product/add", method = RequestMethod.POST)
-	public String addProduct(@ModelAttribute("product") Product product) {
+	public String addProduct(HttpServletRequest request, @ModelAttribute("product") Product product) {
 		int count = productServiceImpl.addProduct(product);
 		if (count > 0) {
 			_mavShare.addObject("status", "Thêm thành công!");
+			return "redirect:/admin/product";
 		} else {
 			_mavShare.addObject("status", "Thêm thất bại!");
+			return "redirect:" + request.getHeader("Referer");
 		}
-
-		_mavShare.setViewName("/admin/product/addProduct");
-		return "redirect:/admin/product";
 	}
 	
 	@RequestMapping(value = "admin/product/search")

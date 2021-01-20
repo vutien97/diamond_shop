@@ -64,7 +64,7 @@
 					</tbody>
 				</table>
 				<br />
-				<c:if test="${TotalQuantity == 0}">
+				<c:if test="${TotalQuantity == 0  || empty TotalQuantity}">
 					<a href="<c:url value = "/trang-chu" />"
 						class="shopBtn btn-large pull-center">Chưa có sản phẩm nào
 						trong giỏ hàng, quay lại trang mua sắm <span

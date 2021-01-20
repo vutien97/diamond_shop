@@ -53,9 +53,8 @@
 			<div class="row">
 				<div class="span4">
 					<div class="well">
-					<br />
 						<h5>Đăng ký tài khoản</h5>
-						
+						<h4>${status}</h4>
 						<form:form action="dang-ky" method="POST" modelAttribute="user">  
 							<div class="control-group">
 								<label class="control-label" for="inputEmail">E-mail</label>

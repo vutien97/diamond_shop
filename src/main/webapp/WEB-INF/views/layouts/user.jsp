@@ -67,7 +67,7 @@
 							Hóa đơn </a>
 					</c:if>
 
-					<a href="contact.html"><span class="icon-envelope"></span> Liên
+					<a href="#"><span class="icon-envelope"></span> Liên
 						hệ với chúng tôi</a> <a href="<c:url value="/gio-hang/"/>"><span
 						class="icon-shopping-cart"></span> ${TotalQuantity} Sản phẩm - <span
 						class="badge badge-warning"><fmt:formatNumber type="number"

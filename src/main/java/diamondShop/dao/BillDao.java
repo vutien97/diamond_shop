@@ -77,14 +77,14 @@ public class BillDao extends BaseDao {
 	}
 
 	public List<Bill> listBill() {
-		String sql = "SELECT * FROM bill ";
+		String sql = "SELECT * FROM bill ORDER BY id DESC";
 		List<Bill> listBill = _jdbcTemplate.query(sql, new BillMapper());
 		return listBill;
 	}
 
 	public List<Bill> listBillPaginate(int start, int billIn1Page) {
 		StringBuffer sql = new StringBuffer();
-		sql.append("SELECT * FROM bill ");
+		sql.append("SELECT * FROM bill ORDER BY id DESC");
 		sql.append(" LIMIT " + start + ", " + billIn1Page);
 		List<Bill> listBill = _jdbcTemplate.query(sql.toString(), new BillMapper());
 		return listBill;
@@ -106,7 +106,7 @@ public class BillDao extends BaseDao {
 	}
 
 	public List<Bill> getBillByUserEmail(String email) {
-		String sql = "SELECT * FROM bill WHERE email ='" + email + "' ";
+		String sql = "SELECT * FROM bill WHERE email ='" + email + "' ORDER BY id DESC";
 		List<Bill> listBill = _jdbcTemplate.query(sql, new BillMapper());
 		return listBill;
 	}
@@ -124,14 +124,14 @@ public class BillDao extends BaseDao {
 	}
 
 	public List<Bill> getBillByStatus() {
-		String sql = "SELECT * FROM bill WHERE status = 0";
+		String sql = "SELECT * FROM bill WHERE status = 0 ORDER BY id DESC";
 		List<Bill> listBill = _jdbcTemplate.query(sql, new BillMapper());
 		return listBill;
 	}
 	
 	public List<Bill> getBillByStatusPaginate(int start, int billIn1Page) {
 		StringBuffer sql =new StringBuffer();
-		sql.append("SELECT * FROM bill WHERE status = 0");
+		sql.append("SELECT * FROM bill WHERE status = 0 ORDER BY id DESC");
 		sql.append(" LIMIT " + start + ", " + billIn1Page);
 		List<Bill> listBill = _jdbcTemplate.query(sql.toString(), new BillMapper());
 		return listBill;
@@ -144,7 +144,7 @@ public class BillDao extends BaseDao {
 	}
 	
 	public List<Bill> getListBillBySearchEmail(String search){
-		String sql = "SELECT * FROM `bill` WHERE email LIKE '%" + search + "%' AND status = 0";
+		String sql = "SELECT * FROM `bill` WHERE email LIKE '%" + search + "%' AND status = 0 ORDER BY id DESC";
 		List<Bill> listBill = _jdbcTemplate.query(sql, new BillMapper());
 		return listBill;
 	}

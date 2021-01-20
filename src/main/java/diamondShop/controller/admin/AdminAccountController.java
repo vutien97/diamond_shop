@@ -26,23 +26,29 @@ public class AdminAccountController extends BaseAdminController {
 	}
 
 	@RequestMapping(value = "/admin-login", method = RequestMethod.POST)
-	public ModelAndView adminLogin(HttpSession session, HttpServletRequest request, @ModelAttribute("user") User user) {
-		user = adminAccountServiceImpl.findAdminByLogin(user);
-		if (user != null) {
-			_mavShare.setViewName("redirect:/admin/admin-index");
-			session.setAttribute("AdminLoginInfo", user);
-			request.getSession().setMaxInactiveInterval(60*60);
+	public String adminLogin(HttpSession session, HttpServletRequest request, @ModelAttribute("user") User user) {
+		if (user.getEmail() == "" || user.getPassword() == "") {
+			_mavShare.addObject("statusLogin", "Đăng nhập thất bại!");
+			return "redirect:" + request.getHeader("Referer");
 		} else {
-			_mavShare.addObject("statusAdminLogin", "Đăng nhập thất bại!");
+			user = adminAccountServiceImpl.findAdminByLogin(user);
+			if (user != null) {
+				// _mavShare.setViewName("redirect:/admin/admin-index");
+				session.setAttribute("AdminLoginInfo", user);
+				request.getSession().setMaxInactiveInterval(60 * 60);
+				return "redirect:/admin/admin-index";
+			} else {
+				_mavShare.addObject("statusAdminLogin", "Đăng nhập thất bại!");
+				return "redirect:" + request.getHeader("Referer");
+			}
 		}
-		return _mavShare;
 	}
-	
+
 	@RequestMapping(value = "/admin-logout", method = RequestMethod.GET)
 	public String Logout(HttpSession session, HttpServletRequest request) {
 		session.removeAttribute("AdminLoginInfo");
 		_mavShare.setViewName("user/index");
-		return "redirect:/trang-chu" ;
+		return "redirect:/trang-chu";
 	}
 
 }

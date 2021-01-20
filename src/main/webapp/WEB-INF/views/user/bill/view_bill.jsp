@@ -43,6 +43,11 @@
 		</div>
 
 		<div class="span9">
+			<ul class="breadcrumb">
+				<li><a href="${pageContext.request.contextPath}/trang-chu">Trang chủ</a> <span class="divider">/</span></li>
+				<li class="active">Hóa đơn</li>
+			</ul>
+		
 			<c:if test="${list_bill.size() == 0 }">
 				<h4>Bạn chưa có hóa đơn nào</h4>
 			</c:if>

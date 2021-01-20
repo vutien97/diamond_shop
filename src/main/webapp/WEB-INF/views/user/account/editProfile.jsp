@@ -53,6 +53,7 @@
 			<div class="row">
 				<div class="span4">
 					<div class="well">
+	
 					<br />
 					
 						<form:form action="${pageContext.request.contextPath}/user/${user.id}" method="POST" modelAttribute="user">  

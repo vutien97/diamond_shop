@@ -54,6 +54,7 @@ background-color: #ddd;
 				<td style="text-align: center; width: 150px;"><b>Ghi chú</b></td>
 				<td style="text-align: center; width: 150px;"><b>Ngày tạo</b></td>
 				<td style="text-align: center; width: 150px;"><b>Trạng thái</b></td>
+				<td style="text-align: center; width: 150px;"></td>
 			</tr>
 			<c:forEach var="item" items="${list_bill}">
 				<tr class="unread checked">
@@ -73,6 +74,11 @@ background-color: #ddd;
 						</c:choose>
 						<%-- ${item.id_category} --%>
 					</td>
+					<td style="text-align: center; width: 150px;">
+					<a href="${pageContext.request.contextPath}/admin/bill/bill_detail/${item.id}"
+										>Chi tiết <span
+										class="icon-arrow-right"></span>
+									</a></td>
 					<!-- <td style="text-align: center; width: 150px;"><a
 						class="btn btn-default" href="#"><i class="fa fa-edit"></i></a></td> -->
 				</tr>

@@ -8,10 +8,10 @@ import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -23,9 +23,9 @@ import diamondShop.entites.Bill;
 import diamondShop.entites.BillDetail;
 import diamondShop.entites.Product;
 import diamondShop.entites.User;
-import diamondShop.services.user.UserServiceImpl;
 import diamondShop.services.user.BillServiceImpl;
 import diamondShop.services.user.ProductServiceImpl;
+import diamondShop.services.user.UserServiceImpl;
 
 @Controller
 public class UserController extends BaseController {
@@ -35,7 +35,7 @@ public class UserController extends BaseController {
 	BillServiceImpl billServiceImpl = new BillServiceImpl();
 	@Autowired
 	ProductServiceImpl productServiceImpl = new ProductServiceImpl();
-	
+
 	@RequestMapping(value = "/dang-ky", method = RequestMethod.GET)
 	public ModelAndView register() {
 		_mavShare.setViewName("user/account/register");
@@ -45,33 +45,37 @@ public class UserController extends BaseController {
 	}
 
 	@RequestMapping(value = "/dang-ky", method = RequestMethod.POST)
-	public ModelAndView createAcc(HttpServletRequest request, HttpServletResponse response,
-			@ModelAttribute("user") User user) throws ServletException, IOException {
+	public String createAcc(HttpServletRequest request, @ModelAttribute("user") User user)
+			throws ServletException, IOException {
 		Date date = new Date();
 		user.setCreated_at(new Timestamp(date.getTime()));
 		int count = accountServiceImpl.addAccount(user);
 		if (count > 0) {
 			_mavShare.addObject("status", "Đăng ký thành công!");
+			return "redirect:/trang-chu";
 		} else {
 			_mavShare.addObject("status", "Đăng ký thất bại!");
+			return "redirect:" + request.getHeader("Referer");
 		}
-		_mavShare.setViewName("user/account/register");
-		request.setCharacterEncoding("utf-8");
-		response.setCharacterEncoding("utf-8");
-		return _mavShare;
 	}
 
 	@RequestMapping(value = "/dang-nhap", method = RequestMethod.POST)
-	public ModelAndView login(HttpSession session, HttpServletRequest request, @ModelAttribute("user") User user) {
-		user = accountServiceImpl.findUserByLogin(user);
-		if (user != null) {
-			_mavShare.setViewName("redirect:trang-chu");
-			session.setAttribute("LoginInfo", user);
-			request.getSession().setMaxInactiveInterval(60*60);
-		} else {
+	public String login(HttpSession session, HttpServletRequest request, @ModelAttribute("user") User user)
+			throws EmptyResultDataAccessException {
+		if (user.getEmail() == "" || user.getPassword() == "") {
 			_mavShare.addObject("statusLogin", "Đăng nhập thất bại!");
+			return "redirect:" + request.getHeader("Referer");
+		} else {
+			user = accountServiceImpl.findUserByLogin(user);
+			if (user != null) {
+				session.setAttribute("LoginInfo", user);
+				request.getSession().setMaxInactiveInterval(60 * 60);
+				return "redirect:/trang-chu";
+			} else {
+				_mavShare.addObject("statusLogin", "Đăng nhập thất bại!");
+				return "redirect:" + request.getHeader("Referer");
+			}
 		}
-		return _mavShare;
 	}
 
 	@RequestMapping(value = "/dang-xuat", method = RequestMethod.GET)
@@ -80,7 +84,7 @@ public class UserController extends BaseController {
 		_mavShare.setViewName("user/index");
 		return "redirect:/trang-chu";
 	}
-	
+
 	@RequestMapping(value = "user/{id}", method = RequestMethod.GET)
 	public ModelAndView editProfile(@PathVariable long id) {
 		User user = accountServiceImpl.getUserById(id);
@@ -88,45 +92,50 @@ public class UserController extends BaseController {
 		_mavShare.setViewName("user/account/editProfile");
 		return _mavShare;
 	}
-	
+
 	@RequestMapping(value = "user/{id}", method = RequestMethod.POST)
-	public ModelAndView editProfile(@ModelAttribute("user") User user ,@PathVariable long id) {
+	public String editProfile(HttpServletRequest request, @ModelAttribute("user") User user, @PathVariable long id) {
+		
 		User existUser = accountServiceImpl.getUserById(id);
 		existUser.setPassword(user.getPassword());
 		existUser.setDisplay_name(user.getDisplay_name());
 		existUser.setAddress(user.getAddress());
 		existUser.setPhone(user.getPhone());
-		accountServiceImpl.updateUser(existUser);
-		
+		int count = accountServiceImpl.updateUser(existUser);
+		if(count > 0) {
+			_mavShare.addObject("status", "Chỉnh sửa thất bại!");
+		} else {
+			_mavShare.addObject("status", "Chỉnh sửa thành công!");
+		}
 		_mavShare.addObject("user", existUser);
-		_mavShare.setViewName("user/account/editProfile");
-		return _mavShare;
+		//_mavShare.setViewName("return "redirect:" + request.getHeader("Referer")");
+		return "redirect:" + request.getHeader("Referer");
 	}
-	
-	@RequestMapping(value="user/bill", method = RequestMethod.GET)
+
+	@RequestMapping(value = "user/bill", method = RequestMethod.GET)
 	public ModelAndView Checkout(HttpServletRequest request, HttpSession session) {
 		_mavShare.setViewName("user/bill/view_bill");
 		User user = (User) session.getAttribute("LoginInfo");
 		List<Bill> listBill = billServiceImpl.getBillByUserEmail(user.getEmail());
-		
+
 		_mavShare.addObject("list_bill", listBill);
 		return _mavShare;
 	}
-	
+
 	@RequestMapping(value = "user/bill/{id}", method = RequestMethod.GET)
 	public ModelAndView billDetail(@PathVariable long id) {
 		_mavShare.setViewName("user/bill/bill_detail");
 		List<Product> listProduct = new ArrayList<Product>();
-		
+
 		List<BillDetail> listBillDetail = billServiceImpl.getBillDetailByBillId(id);
 		for (BillDetail billDetail : listBillDetail) {
-			Product product = productServiceImpl.getProductById(billDetail.getId_product());	
+			Product product = productServiceImpl.getProductById(billDetail.getId_product());
 			listProduct.add(product);
 		}
-		
+
 		_mavShare.addObject("listBillDetail", listBillDetail);
 		_mavShare.addObject("listProduct", listProduct);
-		
+
 		return _mavShare;
 	}
 }

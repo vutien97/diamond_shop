@@ -59,13 +59,22 @@ public class ProductServiceImpl implements IProductService {
 	}
 
 	public int addProduct(Product product) {
-		return productDao.addProduct(product);
+		if (product.getName() == "" || product.getPrice() == 0 || product.getTitle() == "" || product.getImg() == ""
+				|| product.getDetail() == "") {
+			return 0;
+		} else {
+			return productDao.addProduct(product);
+		}
 	}
 
 	@Override
 	public int updateDetailProduct(Product product) {
-		// TODO Auto-generated method stub
-		return productDao.updateDetailProduct(product);
+		if (product.getName() == "" || product.getPrice() == 0 || product.getTitle() == "" || product.getImg() == ""
+				|| product.getDetail() == "") {
+			return 0;
+		} else {
+			return productDao.updateDetailProduct(product);
+		}
 	}
 
 	@Override

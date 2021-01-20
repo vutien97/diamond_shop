@@ -3,7 +3,7 @@
 <%@include file="/WEB-INF/views/layouts/user/taglib.jsp"%>
 <head>
 
-<title>Insert title here</title>
+<title>Chi tiết hóa đơn</title>
 </head>
 <body>
 	<div class="row">
@@ -43,7 +43,12 @@
 		</div>
 
 		<div class="span9">
-
+		<ul class="breadcrumb">
+				<li><a href="${pageContext.request.contextPath}/trang-chu">Trang chủ</a> <span class="divider">/</span></li>
+				<li><a href="${pageContext.request.contextPath}/user/bill">Hóa đơn</a><span class="divider">/</span></li>
+				<li class="active">Chi tiết hóa đơn</li>
+			</ul>
+		
 			<table class="table table-bordered table-condensed">
 				<thead>
 					<tr>

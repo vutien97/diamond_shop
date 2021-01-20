@@ -4,7 +4,7 @@
 
 <head>
 
-<title>Chỉnh sửa hóa đơn</title>
+<title>Chi tiết hóa đơn</title>
 </head>
 <body>
 	<div class="inbox">
@@ -39,18 +39,7 @@
 							</c:forEach>
 						</tbody>
 					</table>
-					<form:form method="POST" modelAttribute="bill" class="com-mail"
-						action="${pageContext.request.contextPath}/admin/not_pay_bill/edit/${bill.id}">
-
-						<label>Xác nhận thanh toán: </label>
-						<form:select path="status">
-							<form:option value="true" label="Yes" />
-							<form:option value="false" label="No" />
-						</form:select>
-
-
-						<input type="submit" value="Save">
-					</form:form>
+					
 				</div>
 			</div>
 		</div>

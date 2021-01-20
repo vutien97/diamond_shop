@@ -32,10 +32,7 @@ background-color: #ddd;
 <body>
 	<div class="well well-small">
 		<div class="row">
-			<span style="margin-left: 25px">Danh sách sản phẩm</span> <select
-				class="pull-right">
-				
-			</select>
+			<span style="margin-left: 25px">Danh sách sản phẩm</span> 
 		</div>
 
 
@@ -46,7 +43,7 @@ background-color: #ddd;
 						<li class="span4">
 							<div class="thumbnail">
 								<a href="${pageContext.request.contextPath}/chi-tiet-san-pham/${item.id_product}" class="overlay"></a> <a
-									class="zoomTool" href="product_details.html"
+									class="zoomTool" href="<c:url value="/chi-tiet-san-pham/${item.id_product}"/>"
 									title="add to cart"><span class="icon-search"></span> QUICK
 									VIEW</a> <a href="<c:url value="/chi-tiet-san-pham/${item.id_product}"/>"><img
 										src="<c:url value="/assets/user/img/${item.img}"/>" alt=""></a>

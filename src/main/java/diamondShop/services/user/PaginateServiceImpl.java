@@ -22,7 +22,7 @@ public class PaginateServiceImpl implements IPaginateService {
 	}
 
 	private int findStart(int currentPage, int limit) {
-		return (currentPage - 1) * limit + 1;
+		return (currentPage - 1) * limit;
 	}
 
 	// Lay tong so trang
