@@ -61,12 +61,16 @@ public class AdminBillController extends BaseAdminController {
 		_mavShare.setViewName("admin/bill/bill_detail");
 		List<Product> listProduct = new ArrayList<Product>();
 
+		//Có thể dùng Map<BillDetail, List<Product>> map = new HashMap<BillDetail, List<Product>>(); để thực hiện chức năng này
+		//Map<BillDetail, List<Product>> map = new HashMap<BillDetail, List<Product>>();
+		
 		List<BillDetail> listBillDetail = billServiceImpl.getBillDetailByBillId(id);
 		for (BillDetail billDetail : listBillDetail) {
 			Product product = productServiceImpl.getProductById(billDetail.getId_product());
 			listProduct.add(product);
+			//map.put(billDetail, listProduct);
 		}
-
+		
 		_mavShare.addObject("listBillDetail", listBillDetail);
 		_mavShare.addObject("listProduct", listProduct);
 		return _mavShare;
